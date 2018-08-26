@@ -1,12 +1,13 @@
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { CreateComponent } from '../components/create/create.component';
 import { EditComponent } from '../components/edit/edit.component';
 import { ListComponent } from '../components/list/list.component';
+import { IssueService } from './../service/issue.service';
 
 const appRoutes: Routes = [
   { path: 'create', component: CreateComponent },
@@ -24,10 +25,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [IssueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
