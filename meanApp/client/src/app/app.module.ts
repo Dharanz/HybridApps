@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from '../components/app/app.component';
+import { AppComponent } from './app.component';
+import { TasksComponent } from '../components/tasks/tasks.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule
