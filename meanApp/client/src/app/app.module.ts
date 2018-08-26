@@ -1,21 +1,33 @@
 import { HttpModule } from '@angular/http';
-import { TasksService } from './../service/tasks.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { TasksComponent } from '../components/tasks/tasks.component';
+import { CreateComponent } from '../components/create/create.component';
+import { EditComponent } from '../components/edit/edit.component';
+import { ListComponent } from '../components/list/list.component';
+
+const appRoutes: Routes = [
+  { path: 'create', component: CreateComponent },
+  { path: 'edit/:id', component: EditComponent },
+  { path: 'list', component: ListComponent },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    TasksComponent
+    CreateComponent,
+    EditComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [TasksService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
