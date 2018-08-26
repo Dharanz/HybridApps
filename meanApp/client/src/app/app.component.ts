@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TasksService } from './../service/tasks.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+
+  constructor(private taskService: TasksService) {
+    this.taskService.GetTasks()
+    .subscribe(res => console.log(res));
+  }
 }
