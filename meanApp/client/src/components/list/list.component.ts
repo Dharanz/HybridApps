@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IssueService } from './../../service/issue.service';
 
+import { Issue } from './../../issue.model';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -8,12 +10,30 @@ import { IssueService } from './../../service/issue.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private issueService: IssueService) { }
+  issues: any = [];
+  displayedColumns = ['title', 'responsiblity', 'severty', 'status', 'actions'];
+
+  constructor(private issueService: IssueService, private router: Router) { }
 
   ngOnInit() {
-    this.issueService.getIssues().subscribe((issues) => {
-      console.log(issues);
+    this.fetchIssues();
+  }
+
+  fetchIssues() {
+    this.issueService.getIssues()
+    .subscribe((data) => {
+      this.issues = data;
     });
   }
 
+  editIssue(id: any) {
+    this.router.navigate([`/edit/${id.textContent}`]);
+  }
+
+  deleteIssue(id: any) {
+    this.issueService.deleteIssue(id.textContent)
+    .subscribe(() => {
+      this.fetchIssues();
+    });
+  }
 }

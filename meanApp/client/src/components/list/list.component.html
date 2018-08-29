@@ -1,3 +1,36 @@
-<p>
-  list works!
-</p>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <button type="button" class="btn btn-outline-primary ctrl-end" routerLink="/create">Create New Issue</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm">
+        <table class="table table-striped">
+          <thead>
+            <tr class="text-center">
+              <th scope="col" *ngFor="let column of displayedColumns">
+                {{ column }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let issue of issues">
+              <td><span #id hidden>{{ issue._id }}</span>{{ issue.title }}</td>
+              <td class="text-center">{{ issue.responsible }}</td>
+              <td class="text-center">{{ issue.severty }}</td>
+              <td class="text-center">{{ issue.status }}</td>
+              <td class="text-center">
+                <div class="row">
+                  <div class="col col-lg-6 text-right change-size" (click)="editIssue(id)"><i class="fa fa-edit"></i></div>
+                  <div class="col col-lg-5 text-left change-size-red" (click)="deleteIssue(id)"><i class="fa fa-trash"></i></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
