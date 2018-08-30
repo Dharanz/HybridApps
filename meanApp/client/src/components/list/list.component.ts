@@ -10,7 +10,7 @@ import { Issue } from './../../issue.model';
 })
 export class ListComponent implements OnInit {
 
-  issues: any = [];
+  issues: Issue[];
   displayedColumns = ['title', 'responsiblity', 'severty', 'status', 'actions'];
 
   constructor(private issueService: IssueService, private router: Router) { }
@@ -21,7 +21,7 @@ export class ListComponent implements OnInit {
 
   fetchIssues() {
     this.issueService.getIssues()
-    .subscribe((data) => {
+    .subscribe((data: Issue[]) => {
       this.issues = data;
     });
   }

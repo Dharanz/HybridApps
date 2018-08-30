@@ -1,3 +1,39 @@
-<p>
-  create works!
-</p>
+<div class="container">
+  <h2>Create Data</h2>
+  <hr>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <form [formGroup]="createForm">
+        <div class="form-group">
+          <input type="text" class="form-control" id="title" formControlName="title" #title placeholder="Title">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="responsible" formControlName="responsible" #responsible placeholder="Responsible">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="description" formControlName="description" id="description" placeholder="Description"
+            #description rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <select class="custom-select" id="severty" formControlName="severty" #severty>
+            <option value="Low">Low</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+          </select>
+        </div>
+        <div class="row">
+            <div class="col col-sm-2">                
+                <button type="submit" class="btn btn-outline-primary btn-size" (click)="addIssue(title.value, responsible.value, description.value, severty.value)"
+                  [disabled]="createForm.pristine || createForm.invalid">Create</button>
+            </div>
+            <div class="col col-sm-2">
+                <button class="btn btn-outline-danger btn-size" routerLink="/list">Back</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
