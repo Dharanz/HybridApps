@@ -1,3 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~font-awesome/css/font-awesome.min.css';
+
+.navbar {
+    padding: 0.9rem 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffff;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link {
+    color: rgba(255,255,255,.5);
+}
+
+.navbar-dark .navbar-nav .active>.nav-link:hover {
+    color: #ffff;
+}
+
+.navbar-toggler {
+    border: 0px solid transparent !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: none !important;
+    color: rgb(233, 227, 227) !important;
+}
+
+.navbar-toggler-icon {
+    width: 0.5em !important;
+    height: 1.0em !important;
+}
+
+@media (min-width: 992px){
+  .navbar-expand-lg .navbar-nav .nav-link {
+      padding-left: 2.5rem;
+    }
+}

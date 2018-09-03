@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 var appRoute: Routes = [
   { path: '', component: HomeComponent},
@@ -21,7 +22,8 @@ var appRoute: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoute)
+    RouterModule.forRoot(appRoute),
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

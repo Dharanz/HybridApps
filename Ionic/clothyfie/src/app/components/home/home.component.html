@@ -1,3 +1,15 @@
-<div class="container-fluid">
-  <h2>Home</h2>
+<div class="container-fluid bg-dark">
+  <div class="row">
+    <div class="col-12">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade text-center" data-ride="carousel">
+        <div class="carousel-inner">
+          <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+            <ng-template ngbSlide *ngFor="let image of images">
+              <img class="img-fluid mb-3 mb-md-0" [src]="image" alt="" width="1260" height="600">
+            </ng-template>
+          </ngb-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

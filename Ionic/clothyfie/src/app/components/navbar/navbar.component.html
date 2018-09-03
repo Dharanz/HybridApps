@@ -1,13 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/">Clothyfie</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+    aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+    aria-controls="navbarTogglerDemo02">
+    <span class="navbar-toggler-icon">
+      <i class="fa fa-ellipsis-v"></i>
+    </span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active current">
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li routerLinkActive="active current">
         <a class="nav-link" routerLink="/users">Users</a>
       </li>
+      <li routerLinkActive="active current">
+        <a class="nav-link" routerLink="/details">Details</a>
+      </li>
+      <li routerLinkActive="active current">
+        <a class="nav-link" routerLink="/orders">Orders</a>
+      </li>
     </ul>
+
+    <a class="nav-link my-2 my-sm-0" routerLink="/users">Login</a>
+
   </div>
 </nav>
