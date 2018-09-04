@@ -7,6 +7,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditFormComponent } from './components/users/edit-form/edit-form.component';
+import { UsersService } from './services/users.service';
+import { environment } from './../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 var appRoute: Routes = [
   { path: '', component: HomeComponent},
@@ -18,14 +24,20 @@ var appRoute: Routes = [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    EditFormComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoute),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase, 'clothyfie'),
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [
+    UsersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
