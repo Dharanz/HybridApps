@@ -13,6 +13,7 @@ import { environment } from './../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 var appRoute: Routes = [
   { path: '', component: HomeComponent},
@@ -33,7 +34,9 @@ var appRoute: Routes = [
     RouterModule.forRoot(appRoute),
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'clothyfie'),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsersService

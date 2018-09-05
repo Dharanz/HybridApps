@@ -1,3 +1,33 @@
-<p>
-  edit-form works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <form [formGroup]="editForm">
+        <div class="form-group">
+          <input type="text" class="form-control" id="name" formControlName="name" value={{users.name}} #name placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" id="mail" formControlName="mail" value={{users.mail}} #mail placeholder="E-Mail" required>
+        </div>
+        <div class="form-group">
+          <input type="text" minlength="10" maxlength="10" class="form-control" id="phone" value={{users.phone}} formControlName="phone" #phone placeholder="Phone" required>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="username" formControlName="username" value={{users.username}} #username placeholder="User Name">
+        </div>
+        <div class="form-group">
+          <input type="text" maxlength="3" class="form-control" id="age" formControlName="age" value={{users.age}} #age placeholder="Age">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="address" formControlName="address" value={{users.address}} id="address" placeholder="Address" required
+            #address rows="3"></textarea>
+        </div>
+        <div class="row">
+          <div class="col col-sm-2">
+            <button type="submit" class="btn btn-outline-dark btn-size"
+            [disabled]="editForm.invalid" (click)="editUser()">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

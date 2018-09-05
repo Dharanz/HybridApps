@@ -37,3 +37,20 @@
       padding-left: 2.5rem;
     }
 }
+
+/* FORM CONTROL */
+.form-control:focus {
+    color: black;
+    border-color: black;
+    box-shadow: 0 0 0 0.2em rgba(0,0,0,0.10);
+}
+
+.custom-select:focus {
+    border-color: black;
+    outline: 0;
+    box-shadow: 0 0 0 0.2em rgba(0,0,0,0.10);
+}
+
+textarea {
+    resize: none;
+ }
