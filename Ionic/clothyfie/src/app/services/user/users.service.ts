@@ -1,7 +1,7 @@
 import { map, take } from 'rxjs/Operators';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Users } from './../models/users';
+import { Users } from '../../models/users';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,10 +11,11 @@ export class UsersService {
 
   userCollection: AngularFirestoreCollection<Users>;
   users: Observable<Users[]>;
+  userDoc: AngularFirestoreDocument<Users>;
 
   constructor(private afs: AngularFirestore) {
     // this.users = this.afs.collection('users').valueChanges();
-    this.userCollection = this.afs.collection('users', ref => ref.orderBy('name', 'asc'));
+    this.userCollection = this.afs.collection('users', ref => ref.orderBy('name', 'asc').limit(5));
     this.users = this.userCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
@@ -24,10 +25,21 @@ export class UsersService {
         });
       })
     )
-
   }
 
-  getUsers() {
+ getUsers() {
     return this.users;
   }
+
+  deleteUsers(id) {
+    this.userDoc = this.afs.doc(`users/${id}`);
+    this.userDoc.delete();
+  }
+
+  updateUser(user: Users) {
+    this.userDoc = this.afs.doc(`users/${user.id}`);
+    this.userDoc.update(user);
+  }
+
+  
 }

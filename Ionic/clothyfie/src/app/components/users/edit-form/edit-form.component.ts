@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsersService } from './../../../services/users.service';
+import { UsersService } from './../../../services/user/users.service';
 import { Users } from './../../../models/users';
 
 @Component({
@@ -13,7 +13,7 @@ export class EditFormComponent implements OnInit {
 
   editForm: FormGroup;
   @Input() users: any = [];
-
+  @Output() closeModel: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private fb: FormBuilder,
@@ -38,8 +38,10 @@ export class EditFormComponent implements OnInit {
   ngOnInit() {    
   }
 
-  editUser() {
-    console.log('Submitted');
+  updateUser(id, name, mail, phone, username, age, address) {
+    const user: Users = {id, name, mail, phone, username, age, address};
+    this.userService.updateUser(user);
+    this.closeModel.emit(true);
   }
 
 }

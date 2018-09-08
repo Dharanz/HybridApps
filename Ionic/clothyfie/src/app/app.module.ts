@@ -8,16 +8,20 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditFormComponent } from './components/users/edit-form/edit-form.component';
-import { UsersService } from './services/users.service';
+import { UsersService } from './services/user/users.service';
+import { ProductService } from './services/product/product.service';
 import { environment } from './../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { EditProductComponent } from './components/product-details/edit-product/edit-product.component';
 
 var appRoute: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'users', component: UsersComponent}
+  { path: 'users', component: UsersComponent},
+  { path: 'productDetails', component: ProductDetailsComponent}
 ];
 
 @NgModule({
@@ -27,7 +31,9 @@ var appRoute: Routes = [
     HomeComponent,
     UsersComponent,
     EditFormComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ProductDetailsComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,8 @@ var appRoute: Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

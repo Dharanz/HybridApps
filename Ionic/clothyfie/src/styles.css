@@ -38,6 +38,10 @@
     }
 }
 
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active {
+    color: #fff;
+}
+
 /* FORM CONTROL */
 .form-control:focus {
     color: black;

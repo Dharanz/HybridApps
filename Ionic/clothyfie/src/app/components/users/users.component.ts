@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UsersService } from './../../services/users.service';
+import { UsersService } from './../../services/user/users.service';
 import { Users } from './../../models/users';
 import { Router } from '@angular/router';
 
@@ -32,6 +32,14 @@ export class UsersComponent implements OnInit {
   openVerticallyCentered(content, user: Users[]) {
     this.modalService.open(content, { centered: true });    
     this.selectedUser = user;
+  }
+
+  closeModel(callback) {
+    callback();
+  }
+
+  deleteUsers(id) {
+    this.userServie.deleteUsers(id);
   }
 
 }

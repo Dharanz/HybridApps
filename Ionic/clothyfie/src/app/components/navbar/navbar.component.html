@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/">Clothyfie</a>
+  <a class="navbar-brand" [routerLinkActive]="['active']" routerLink="/">Clothyfie</a>
   <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
     aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
     aria-controls="navbarTogglerDemo02">
@@ -10,14 +10,14 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li routerLinkActive="active current">
+      <li [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="/users">Users</a>
       </li>
-      <li routerLinkActive="active current">
-        <a class="nav-link" routerLink="/details">Details</a>
+      <li [routerLinkActive]="['active']">
+        <a class="nav-link" routerLink="/productDetails">Product Details</a>
       </li>
-      <li routerLinkActive="active current">
-        <a class="nav-link" routerLink="/orders">Orders</a>
+      <li [routerLinkActive]="['active']">
+        <a class="nav-link">Orders</a>
       </li>
     </ul>
 
