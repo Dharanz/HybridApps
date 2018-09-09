@@ -1,32 +1,76 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <!-- <form [formGroup]="editProduct">
-        <div class="form-group">
-          <input type="text" class="form-control" id="name" formControlName="name" value={{users.name}} #name placeholder="Full Name" required>
+      <form [formGroup]="editProduct" (ngSubmit)="saveProduct(products.id, name.value, color.value, brand.value, size.value, prize.value, quantity.value, images.textContent)">
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-2"></div>
+          <div class="col-md-auto radius">
+            <img [src]="imgsrc" class="img-fluid" height="125" width="125" alt="Responsive image">
+            <div class="overlay">
+              <a (click)="fileInput.click()" class="icon" title="User Profile">
+                <i class="fa fa-edit"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col col-lg-2"></div>
         </div>
         <div class="form-group">
-          <input type="email" class="form-control" id="mail" formControlName="mail" value={{users.mail}} #mail placeholder="E-Mail" required>
+          <label for="name">Cloth Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name" value={{products.name}} #name placeholder="Cloth Name"
+            required>
         </div>
         <div class="form-group">
-          <input type="text" minlength="10" maxlength="10" class="form-control" id="phone" value={{users.phone}} formControlName="phone" #phone placeholder="Phone" required>
+          <label for="brand">Brand</label>
+          <input type="text" class="form-control" id="brand" formControlName="brand" value={{products.brand}} #brand placeholder="Brand"
+            required>
         </div>
-        <div class="form-group">
-          <input type="text" class="form-control" id="username" formControlName="username" value={{users.username}} #username placeholder="User Name">
+        <div class="row">
+          <div class="form-group col">
+            <label for="color">Color</label>
+            <select class="form-control" formControlName="color" #color id="color" [(ngModel)]="products.colorID">
+              <option *ngFor="let color of productColor" [value]="color.id">{{ color.color }}</option>
+            </select>
+          </div>
+          <div class="form-group col">
+            <label for="size">Size</label>
+            <select class="form-control" formControlName="size" #size id="size" [(ngModel)]="products.sizeID">
+              <option *ngFor="let size of productSize" [value]="size.id">{{ size.size }}</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <input type="text" maxlength="3" class="form-control" id="age" formControlName="age" value={{users.age}} #age placeholder="Age">
+        <div class="row">
+          <div class="form-group col">
+            <label for="prize">Prize</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">₹</div>
+              </div>
+              <input type="number" class="form-control" id="prize" formControlName="prize" value={{products.prize}} #prize placeholder="Prize"
+                required>
+            </div>
+          </div>
+          <div class="form-group col">
+            <label for="quantity">Stock In</label>
+            <input type="number" class="form-control" id="quantity" formControlName="quantity" value={{products.quantity}} #quantity
+              placeholder="Stock In" required>
+              <span #images hidden>{{ products.images }} </span>
+          </div>
         </div>
-        <div class="form-group">
-          <textarea class="form-control" id="address" formControlName="address" value={{users.address}} id="address" placeholder="Address" required
-            #address rows="3"></textarea>
+        <div class="form-group" hidden>
+          <div class="custom-file">
+            <input type="file" #fileInput (change)="chooseFiles($event)" class="custom-file-input" id="file">
+          </div>
         </div>
         <div class="row">
           <div class="col col-sm-2">
-            <button type="submit" class="btn btn-outline-dark btn-size" [disabled]="editForm.invalid">Save</button>
+            <button type="submit" class="btn btn-outline-dark btn-size" [disabled]="editProduct.invalid">Save</button>
+          </div>
+          <div class="col col-lg-10">
+            <label class="total-label">
+              <b>Total: </b>{{ prize.value * quantity.value | currency:'INR' }}</label>
           </div>
         </div>
-      </form> -->
+      </form>
     </div>
   </div>
 </div>

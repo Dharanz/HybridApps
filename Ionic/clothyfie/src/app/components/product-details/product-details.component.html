@@ -14,30 +14,32 @@
         <thead>
           <tr>
             <th scope="col" class="text-left">Product Name</th>
-            <th scope="col" class="text-left">Color</th>
+            <th scope="col" class="text-center">Color</th>
             <th scope="col" class="text-left">Brand</th>
-            <th scope="col" class="text-left">Size</th>
-            <th scope="col" class="text-center">Stock</th>
+            <th scope="col" class="text-center">Size</th>
+            <th scope="col" class="text-center">Prize</th>
+            <th scope="col" class="text-center">Stock In</th>
+            <th scope="col" class="text-center">Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <!-- <td class="text-left"><span #id hidden>{{ users.id }}</span>{{ user.name }}</td>
-            <td class="text-left">{{ user.mail }}</td>
-            <td class="text-left">{{ user.phone }}</td>
-            <td class="text-left">{{ user.username }}</td>
-            <td class="text-center">{{ user.age }}</td>
-            <td class="text-left">{{ user.address }}</td>
+        <tbody *ngIf="productCount">
+          <tr *ngFor="let product of products">
+            <td class="text-left"><span #id hidden>{{ product.id }}</span>{{ product.name }}</td>
+            <td class="text-center">{{ product.color }}</td>
+            <td class="text-left">{{ product.brand }}</td>
+            <td class="text-center">{{ product.size }}</td>
+            <td class="text-center">{{ product.prize }}</td>
+            <td class="text-center"><span #image hidden>{{ product.images }}</span>{{ product.quantity }}</td>
             <td class="text-center">
               <div class="row">
-                <div class="col col-lg-6 text-right change-size" (click)="openVerticallyCentered(content, user)">
+                <div class="col col-lg-6 text-right change-size" (click)="openVerticallyCentered(content, product)">
                   <i class="fa fa-edit"></i>
                 </div>
-                <div class="col col-lg-5 text-left change-size-red" (click)="deleteUsers(user.id)">
+                <div class="col col-lg-5 text-left change-size-red" (click)="deleteProduct(product.id)">
                   <i class="fa fa-trash"></i>
                 </div>
               </div>
-            </td> -->
+            </td>
           </tr>
         </tbody>
         <tbody *ngIf="spinner">
@@ -47,7 +49,7 @@
             </td>
           </tr>
         </tbody>
-        <tbody *ngIf="!spinner && !userCount">
+        <tbody *ngIf="!spinner && !productCount">
           <loading-spinner *ngIf="spinner"></loading-spinner>
           <tr>
             <td colspan="7" class="text-center">No Records are Found!</td>
@@ -70,7 +72,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <edit-product></edit-product>
+          <edit-product [validation]="newProduct" [products]="selectedProduct" (closeModel)="closeModel(c)"></edit-product>
         </div>
       </ng-template>
     </div>

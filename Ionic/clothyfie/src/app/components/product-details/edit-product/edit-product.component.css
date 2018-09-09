@@ -1,0 +1,46 @@
+.total-label {
+    float: right;
+    text-align: right;
+}
+
+.img-fluid {
+    border-radius: 100%;
+    border: 1px solid grey;
+}
+
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: transparent;
+  }
+  
+  .col-md-auto:hover .overlay {
+    opacity: 1;
+    border-radius: 100%;
+  }
+  
+  .icon {
+    color: rgb(77, 74, 74);
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .fa-edit:hover {
+    color: #000;
+  }

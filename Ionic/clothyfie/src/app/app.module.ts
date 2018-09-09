@@ -13,6 +13,7 @@ import { ProductService } from './services/product/product.service';
 import { environment } from './../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -42,7 +43,8 @@ var appRoute: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'clothyfie'),
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ],
   providers: [
     UsersService,
