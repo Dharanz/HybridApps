@@ -44,3 +44,15 @@
   .fa-edit:hover {
     color: #000;
   }
+
+  .img-panel {
+    height: 125px;
+    width: 125px;
+  }
+
+  .progress {
+    margin-top: 1%;
+  }
+  .progress-bar {
+    background-color: #000;
+  }

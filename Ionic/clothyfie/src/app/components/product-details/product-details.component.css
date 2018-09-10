@@ -2,6 +2,10 @@
     float: right;
 }
 
+.ctrl-start {
+    float: left;
+}
+
 .change-size {
     font-size: 1.5;
     color: #007bff;
@@ -10,4 +14,8 @@
 .change-size-red {
     font-size: 1.5;
     color: red;
+}
+
+.close-position {
+    padding-left: 0px;
 }

@@ -5,7 +5,7 @@
         <div class="row justify-content-md-center">
           <div class="col col-lg-2"></div>
           <div class="col-md-auto radius">
-            <img [src]="imgsrc" class="img-fluid" height="125" width="125" alt="Responsive image">
+            <img [src]="imgsrc" class="img-fluid img-panel" height="125" width="125" alt="Responsive image">
             <div class="overlay">
               <a (click)="fileInput.click()" class="icon" title="User Profile">
                 <i class="fa fa-edit"></i>
@@ -13,6 +13,9 @@
             </div>
           </div>
           <div class="col col-lg-2"></div>
+        </div>
+        <div class="progress" style="height: 2px;" *ngIf="progressHidden">
+          <div class="progress-bar" role="progressbar" [ngStyle]="width" aria-valuemax="100"></div>
         </div>
         <div class="form-group">
           <label for="name">Cloth Name</label>
@@ -53,7 +56,7 @@
             <label for="quantity">Stock In</label>
             <input type="number" class="form-control" id="quantity" formControlName="quantity" value={{products.quantity}} #quantity
               placeholder="Stock In" required>
-              <span #images hidden>{{ products.images }} </span>
+            <span #images hidden>{{ products.images }} </span>
           </div>
         </div>
         <div class="form-group" hidden>

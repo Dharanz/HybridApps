@@ -22,6 +22,8 @@ export class EditProductComponent implements OnInit {
   selectedFiles: FileList;
   file: File;
   imgsrc;
+  width = {};
+  progressHidden: boolean = false;
 
   constructor(private fb: FormBuilder, private productService: ProductService, private storage: AngularFireStorage) { }
 
@@ -94,6 +96,15 @@ export class EditProductComponent implements OnInit {
     let uniqueKey = 'pic' + Math.floor(Math.random() * 1000);
     const uploadTask = this.storage.upload('/photos/products/' + uniqueKey, file);
     uploadTask.then((res: UploadTaskSnapshot) => res.ref.getDownloadURL().then(res => this.imgsrc = res));
+
+    this.progressHidden = true;
+
+    uploadTask.percentageChanges().subscribe(res => {
+      this.width = { 'width': `${res}%` }
+      if (res == 100) {
+        this.progressHidden = false;
+      }
+    });
   }
 
 }

@@ -15,23 +15,30 @@ export class ProductDetailsComponent implements OnInit {
   spinner: boolean = true;
   newProduct: boolean;
   selectedProduct: Products;
+  productColor: any = [];
+  productSize: any = [];
 
   constructor(private modalService: NgbModal, private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getProducts()
-      .subscribe(res => {
-        this.products = res;
-        this.spinner = false;
-        
-        this.productCount = this.products.length > 0 ? true : false;
-      })
+    this.getProducts();
+    this.productService.getProductColor().subscribe(res => this.productColor = res);
   }
 
   openVerticallyCentered(content, create) {
     this.newProduct = create == 'new' ? true : false;
     this.modalService.open(content, { centered: true });
     this.selectedProduct = create;
+  }
+
+  getProducts() {
+    this.productService.getProducts()
+      .subscribe(res => {
+        this.products = res;
+        this.spinner = false;
+
+        this.productCount = this.products.length > 0 ? true : false;
+      });
   }
 
   closeModel(callback) {
@@ -42,4 +49,21 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.deleteProduct(id);
   }
 
+  searchColor(searchColor) {
+    if (searchColor.target.value != 0) {
+      this.productService.getProductsByProductName(searchColor.target.value)
+        .subscribe(res => {
+          this.products = res;
+          this.spinner = false;
+
+          this.productCount = this.products.length > 0 ? true : false;
+        });
+    } else {
+      this.getProducts();
+    }
+  }
+
+  clearFilter() {
+    this.getProducts();
+  }
 }

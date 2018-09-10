@@ -17,22 +17,22 @@ export class ProductService {
   
 
   constructor(private afs: AngularFirestore) {
-    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5));
-    this.product = this.productCollection.snapshotChanges().pipe(
-      map(changes => {
-        return changes.map(a => {
-          const data = a.payload.doc.data() as Products;
-          data.id = a.payload.doc.id;
-          this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
-          this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
-          return data;
-        });
-      })
-    )
+    this.getProducts();
    }
 
    getProducts() {
-     return this.product;
+     this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5));
+     return  this.product = this.productCollection.snapshotChanges().pipe(
+       map(changes => {
+         return changes.map(a => {
+           const data = a.payload.doc.data() as Products;
+           data.id = a.payload.doc.id;
+           this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
+           this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
+           return data;
+         });
+       })
+     )
    }
 
    getProductColor() {
@@ -80,5 +80,19 @@ export class ProductService {
   deleteProduct(id) {
     this.productDoc = this.afs.doc(`product/${id}`);
     this.productDoc.delete();
+  }
+
+  getProductsByProductName(searchColor) {
+    return this.afs.collection(`product`, ref => ref.where('colorID', "==", searchColor)).snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Products;
+          data.id =  a.payload.doc.id;
+          this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
+          this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
+          return data;
+        });
+      })
+    )
   }
 }
