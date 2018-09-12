@@ -14,6 +14,7 @@ export class EditFormComponent implements OnInit {
   editForm: FormGroup;
   @Input() users: any = [];
   @Output() closeModel: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() showAlert: EventEmitter<String> = new EventEmitter<String>();
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +42,7 @@ export class EditFormComponent implements OnInit {
   updateUser(id, name, mail, phone, username, age, address) {
     const user: Users = {id, name, mail, phone, username, age, address};
     this.userService.updateUser(user);
+    this.showAlert.emit('Updated Successfully');
     this.closeModel.emit(true);
   }
 

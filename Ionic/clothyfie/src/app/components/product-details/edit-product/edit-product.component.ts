@@ -18,6 +18,7 @@ export class EditProductComponent implements OnInit {
   productColor: any = [];
   productSize: any = [];
   @Output() closeModel: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() showAlert: EventEmitter<String> = new EventEmitter<String>();
 
   selectedFiles: FileList;
   file: File;
@@ -77,8 +78,10 @@ export class EditProductComponent implements OnInit {
         images: this.imgsrc
       }
       this.productService.addProduct(addProduct);
+      this.showAlert.emit('Created Successfully');
     } else {
       this.productService.updateProduct(products);
+      this.showAlert.emit('Updated Successfully');
     }
 
     this.closeModel.emit(true);

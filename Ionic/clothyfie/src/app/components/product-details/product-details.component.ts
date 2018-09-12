@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Products } from './../../models/products';
+import { ToasterService, ToasterConfig } from 'angular2-toaster';
 
 @Component({
   selector: 'app-product-details',
@@ -18,7 +19,16 @@ export class ProductDetailsComponent implements OnInit {
   productColor: any = [];
   productSize: any = [];
 
-  constructor(private modalService: NgbModal, private productService: ProductService) { }
+  latestEntry: any;
+  public config: ToasterConfig =
+    new ToasterConfig({
+      showCloseButton: true,
+      tapToDismiss: false,
+      timeout: 2000,
+      positionClass: 'toast-bottom-center'
+    });
+
+  constructor(private modalService: NgbModal, private productService: ProductService, private ts: ToasterService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -32,12 +42,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getProducts()
+      this.productService.getProducts()
       .subscribe(res => {
         this.products = res;
         this.spinner = false;
 
         this.productCount = this.products.length > 0 ? true : false;
+        this.latestEntry = res[res.length - 1];
       });
   }
 
@@ -46,7 +57,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   deleteProduct(id) {
-    this.productService.deleteProduct(id);
+    let result = confirm('Do You Want to Delete?');
+    if (result) {
+      this.productService.deleteProduct(id);
+      this.ts.pop('success', 'Deleted Successfully');
+    } else {
+      return;
+    }    
   }
 
   searchColor(searchColor) {
@@ -65,5 +82,9 @@ export class ProductDetailsComponent implements OnInit {
 
   clearFilter() {
     this.getProducts();
+  }
+
+  showAlert(event) {
+    this.ts.pop('success', event);
   }
 }

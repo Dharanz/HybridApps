@@ -1,5 +1,9 @@
 <br>
 <div class="container">
+  <!-- <ngb-alert class="shadow p-3 mb-5 rounded" *ngIf="staticAlertClosed" type="success" (close)="!staticAlertClosed">{{ alertMessage }}</ngb-alert> -->
+  <toaster-container [toasterconfig]="config"></toaster-container>
+</div>
+<div class="container">
   <br>
   <div class="row">
     <div class="col-sm">
@@ -64,7 +68,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <edit-form [users]="selectedUser" (closeModel)="closeModel(c)"></edit-form>
+          <edit-form [users]="selectedUser" (showAlert)="showAlert($event)" (closeModel)="closeModel(c)"></edit-form>
         </div>
       </ng-template>
     </div>

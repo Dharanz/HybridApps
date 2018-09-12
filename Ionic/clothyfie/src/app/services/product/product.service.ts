@@ -14,65 +14,65 @@ export class ProductService {
   product: Observable<Products[]>;
   productDoc: AngularFirestoreDocument<Products>;
 
-  
+
 
   constructor(private afs: AngularFirestore) {
     this.getProducts();
-   }
+  }
 
-   getProducts() {
-     this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5));
-     return  this.product = this.productCollection.snapshotChanges().pipe(
-       map(changes => {
-         return changes.map(a => {
-           const data = a.payload.doc.data() as Products;
-           data.id = a.payload.doc.id;
-           this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
-           this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
-           return data;
-         });
-       })
-     )
-   }
+  getProducts() {
+    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(25));
+    return this.product = this.productCollection.snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Products;
+          data.id = a.payload.doc.id;
+          this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
+          this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
+          return data;
+        });
+      })
+    )
+  }
 
-   getProductColor() {
+  getProductColor() {
     return this.afs.collection(`productColor`).snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as ProductColor;
-          data.id =  a.payload.doc.id;
+          data.id = a.payload.doc.id;
           return data;
         });
       })
     )
-   }
+  }
 
-   getProductColorByID(id) {
+  getProductColorByID(id) {
     return this.afs.doc(`productColor/${id}`).valueChanges();
-   }
+  }
 
 
-   getProductSize() {
+  getProductSize() {
     return this.afs.collection(`productSize`).snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as ProductSize;
-          data.id =  a.payload.doc.id;
+          data.id = a.payload.doc.id;
           return data;
         });
       })
     )
-   }
+  }
 
-   getProductSizeByID(id) {
+  getProductSizeByID(id) {
     return this.afs.doc(`productSize/${id}`).valueChanges();
-   }
+  }
 
-   addProduct(product: Products) {
-     this.productCollection.add(product);
-   }
+  addProduct(product: Products) {
+    this.productCollection.add(product);
+  }
 
-   updateProduct(product: Products) {
+  updateProduct(product: Products) {
     this.productDoc = this.afs.doc(`product/${product.id}`);
     this.productDoc.update(product);
   }
@@ -87,7 +87,7 @@ export class ProductService {
       map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as Products;
-          data.id =  a.payload.doc.id;
+          data.id = a.payload.doc.id;
           this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
           this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
           return data;

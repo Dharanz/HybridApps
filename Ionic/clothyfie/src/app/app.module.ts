@@ -19,6 +19,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { EditProductComponent } from './components/product-details/edit-product/edit-product.component';
 
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
+
 var appRoute: Routes = [
   { path: '', component: HomeComponent},
   { path: 'users', component: UsersComponent},
@@ -44,7 +48,8 @@ var appRoute: Routes = [
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    BrowserAnimationsModule, ToasterModule.forRoot()
   ],
   providers: [
     UsersService,
