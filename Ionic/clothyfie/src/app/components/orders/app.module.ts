@@ -24,7 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderService } from './services/order/order.service';
-import { EditOrderComponent } from 'src/app/components/orders/edit-order/edit-order.component';
+import { EditOrderComponent } from './edit-order/edit-order.component';
 
 var appRoute: Routes = [
   { path: '', component: HomeComponent},

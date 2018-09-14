@@ -14,9 +14,11 @@ export class UsersService {
   userDoc: AngularFirestoreDocument<Users>;
 
   constructor(private afs: AngularFirestore) {
-    // this.users = this.afs.collection('users').valueChanges();
+  }
+
+  getUsers() {
     this.userCollection = this.afs.collection('users', ref => ref.orderBy('name', 'asc').limit(5));
-    this.users = this.userCollection.snapshotChanges().pipe(
+    return this.users = this.userCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as Users;
@@ -25,10 +27,6 @@ export class UsersService {
         });
       })
     )
-  }
-
- getUsers() {
-    return this.users;
   }
 
   deleteUsers(id) {
@@ -41,5 +39,5 @@ export class UsersService {
     this.userDoc.update(user);
   }
 
-  
+
 }

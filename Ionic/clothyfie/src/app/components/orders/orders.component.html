@@ -1,0 +1,84 @@
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-outline-dark ctrl-end" (click)="openVerticallyCentered(content, 'new')">Create New Manual Order</button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-sm">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" class="text-left">OrderID</th>
+            <th scope="col" class="text-left">Customer Name</th>
+            <th scope="col" class="text-left">Product ID</th>
+            <th scope="col" class="text-center">Order Date</th>
+            <th scope="col" class="text-center">Qty</th>
+            <th scope="col" class="text-left">Status</th>
+            <th scope="col" class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="orderCount">
+          <tr *ngFor="let order of orders">
+            <td class="text-left">{{ order.id }}</td>
+            <td class="text-left">{{ order.customerName }}</td>
+            <td class="text-left">{{ order.productID }}</td>
+            <td class="text-center">{{ order.orderDate.toDate() | date:'shortDate' }}</td>
+            <td class="text-center">{{ order.quantity }}</td>
+            <td class="text-left">{{ order.status }}</td>
+            <td class="text-center">
+              <div class="row">
+                <div class="col col-lg-6 text-right change-size" (click)="openVerticallyCentered(content, order)">
+                  <i class="fa fa-edit"></i>
+                </div>
+                <div class="col col-lg-5 text-left change-size-red" (click)="deleteProduct(order.id)">
+                  <i class="fa fa-trash"></i>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="spinner">
+          <tr>
+            <td colspan="7" class="text-center">
+              <loading-spinner></loading-spinner>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="!spinner && !orderCount">
+          <loading-spinner *ngIf="spinner"></loading-spinner>
+          <tr>
+            <td colspan="7" class="text-center">No Records are Found!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <ng-template #content let-modal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" *ngIf="!newOrder">Update Status
+            <i class="fa fa-pencil"></i>
+          </h4>
+          <h4 class="modal-title" *ngIf="newOrder">Create New Order
+            <i class="fa fa-plus-square"></i>
+          </h4>
+          <button type="button" class="close" aria-label="Close" (click)="closeModel(c)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <edit-order [orders]="selectedOrder" (showAlert)="showAlert($event)" (closeModel)="closeModel(c)"></edit-order>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

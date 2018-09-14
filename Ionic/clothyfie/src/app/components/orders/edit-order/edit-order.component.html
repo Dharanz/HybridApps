@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <form (ngSubmit)="saveOrder()">
+        <div class="form-group">
+          <label for="orderID">Order ID</label>
+          <input type="text" class="form-control" id="orderID" [value]="orders.id" #orderID disabled>
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label for="color">Customer ID</label>
+            <input type="text" class="form-control" id="CustomerID" [value]="orders.customerID" #customerID disabled>
+          </div>
+          <div class="form-group col">
+            <label for="username">Customer Name</label>
+            <select class="form-control" #userName id="username" name="customerID" [(ngModel)]="orders.customerID">
+              <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label for="color">product ID</label>
+            <input type="text" class="form-control" id="CustomerID" [value]="orders.productID" #productID disabled>
+          </div>
+          <div class="form-group col">
+            <label for="productName">Customer Name</label>
+            <select class="form-control" #productName id="productName" name="productID" [(ngModel)]="orders.productID">
+              <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label for="quantity">Quantity</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Qty" [value]="orders.quantity" #quantity>
+          </div>
+          <div class="form-group col">
+              <label for="status">Status</label>
+              <select class="form-control" #status id="status" name="status">
+                <option value="1">New</option>
+                <option value="2">In Progress</option>
+                <option value="3">Delivered</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-sm-2">
+            <button type="submit" class="btn btn-outline-dark btn-size">Save</button>
+          </div>
+          <div class="col col-lg-10">
+            <label class="total-label"></label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
