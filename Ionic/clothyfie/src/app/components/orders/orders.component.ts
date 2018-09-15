@@ -45,6 +45,16 @@ export class OrdersComponent implements OnInit {
     this.selectedOrder = create;
   }
 
+  deleteOrder(id) {
+    let result = confirm('Do You Want to Delete?');
+    if (result) {
+      this.orderService.deleteOrder(id);
+      this.ts.pop('success', 'Deleted Successfully');
+    } else {
+      return;
+    }  
+  }
+
   closeModel(callback) {
     callback();
   }

@@ -41,4 +41,18 @@ export class OrderService {
    getUserName() {
     return this.afs.collection(`users`).valueChanges();
    }
+
+   addOrder(order) {
+    this.orderCollection.add(order);
+   }
+
+   updateOrder(order) {
+    this.orderDoc = this.afs.doc(`orders/${order.id}`);
+    this.orderDoc.update(order);
+  }
+
+  deleteOrder(id) {
+    this.orderDoc = this.afs.doc(`orders/${id}`);
+    this.orderDoc.delete();
+  }
 }

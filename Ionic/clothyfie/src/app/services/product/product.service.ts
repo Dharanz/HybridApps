@@ -14,6 +14,8 @@ export class ProductService {
   product: Observable<Products[]>;
   productDoc: AngularFirestoreDocument<Products>;
 
+  productPrize: Observable<Products>;
+
 
 
   constructor(private afs: AngularFirestore) {
@@ -94,5 +96,9 @@ export class ProductService {
         });
       })
     )
+  }
+
+  getProductByID(id) {
+    return this.productPrize = this.afs.doc(`product/${id}`).valueChanges();
   }
 }

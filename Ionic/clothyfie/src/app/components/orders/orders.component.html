@@ -35,7 +35,7 @@
                 <div class="col col-lg-6 text-right change-size" (click)="openVerticallyCentered(content, order)">
                   <i class="fa fa-edit"></i>
                 </div>
-                <div class="col col-lg-5 text-left change-size-red" (click)="deleteProduct(order.id)">
+                <div class="col col-lg-5 text-left change-size-red" (click)="deleteOrder(order.id)">
                   <i class="fa fa-trash"></i>
                 </div>
               </div>
@@ -76,7 +76,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <edit-order [orders]="selectedOrder" (showAlert)="showAlert($event)" (closeModel)="closeModel(c)"></edit-order>
+          <edit-order [validation]="newOrder" [orders]="selectedOrder" (showAlert)="showAlert($event)" (closeModel)="closeModel(c)"></edit-order>
         </div>
       </ng-template>
     </div>
