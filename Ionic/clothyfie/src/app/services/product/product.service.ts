@@ -101,4 +101,19 @@ export class ProductService {
   getProductByID(id) {
     return this.productPrize = this.afs.doc(`product/${id}`).valueChanges();
   }
+
+  searchProduct(searchStartText, searchEndText) {
+    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5).startAt(searchStartText).endAt(searchEndText))
+    return this.product = this.productCollection.snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Products;
+          data.id = a.payload.doc.id;
+          this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
+          this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
+          return data;
+        });
+      })
+    )
+  }
 }

@@ -1,6 +1,19 @@
 <br>
+<div class="container">
+  <toaster-container [toasterconfig]="config"></toaster-container>
+</div>
 <div class="container-fluid">
   <div class="row">
+    <div class="col col-lg-3">
+      <div class="form-group">
+        <select class="form-control" id="startDate">
+          <option value="0">--Color--</option>
+        </select>
+      </div>
+    </div>
+    <div class="col col-lg-3" >
+      <input type="text" class="form-control" id="txtSearch" placeholder="Search Product" #searchText>
+    </div>
     <div class="col">
       <button type="button" class="btn btn-outline-dark ctrl-end" (click)="openVerticallyCentered(content, 'new')">Create New Manual Order</button>
     </div>
@@ -27,7 +40,7 @@
             <td class="text-left">{{ order.id }}</td>
             <td class="text-left">{{ order.customerName }}</td>
             <td class="text-left">{{ order.productID }}</td>
-            <td class="text-center">{{ order.orderDate.toDate() | date:'shortDate' }}</td>
+            <td class="text-center">{{ order.orderDate.toDate() | date:'yyyy-MM-dd' }}</td>
             <td class="text-center">{{ order.quantity }}</td>
             <td class="text-left">{{ order.status }}</td>
             <td class="text-center">

@@ -54,5 +54,5 @@ export class OrderService {
   deleteOrder(id) {
     this.orderDoc = this.afs.doc(`orders/${id}`);
     this.orderDoc.delete();
-  }
+  } 
 }

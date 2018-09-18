@@ -36,7 +36,7 @@ export class OrdersComponent implements OnInit {
       this.spinner = false;
 
       this.orderCount = this.orders.length > 0 ? true : false;
-    })
+    });
   }
 
   openVerticallyCentered(content, create) {
@@ -62,5 +62,4 @@ export class OrdersComponent implements OnInit {
   showAlert(event) {
     this.ts.pop('success', event);
   }
-
 }

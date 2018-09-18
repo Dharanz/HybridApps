@@ -59,3 +59,19 @@
 textarea {
     resize: none;
  }
+
+ .btn-link {
+    color: #fff !important;
+}
+
+.ngb-dp-weekday[_ngcontent-c8] {
+    color: #fff !important;
+}
+
+.bg-light {
+    background-color: #000 !important;
+}
+
+.dropdown-menu {
+    font-size: 14px !important;
+}

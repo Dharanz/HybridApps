@@ -80,6 +80,16 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  search(event) {
+    this.productService.searchProduct(event.target.value, event.target.value+"\uf8ff")
+    .subscribe((products: Products[]) => {
+      this.products = products;
+      this.spinner = false;
+
+      this.productCount = this.products.length > 0 ? true : false;
+    });
+  }
+
   clearFilter() {
     this.getProducts();
   }

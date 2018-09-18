@@ -4,7 +4,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col col-lg-3">
       <div class="form-group">
         <select class="form-control" id="color" (change)="searchColor($event)">
           <option value="0">--Color--</option>
@@ -12,8 +12,8 @@
         </select>
       </div>
     </div>
-    <div class="col-6  close-position" >
-      <i class="fa fa-close" (click)="clearFilter()" placement="right" ngbTooltip="Clear Filter"></i>
+    <div class="col col-lg-3" >
+      <input type="text" class="form-control" id="txtSearch" placeholder="Search Product" (keyup)="search($event)" #searchText>
     </div>
     <div class="col">
       <button type="button" class="btn btn-outline-dark ctrl-end" (click)="openVerticallyCentered(content, 'new')">Create New Product</button>

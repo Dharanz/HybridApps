@@ -5,6 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Orders } from './../../../models/orders';
 import { OrderService } from './../../../services/order/order.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'edit-order',
@@ -26,19 +27,24 @@ export class EditOrderComponent implements OnInit {
   defaultQty;
 
   model;
+  date;
 
   constructor(private usersService: UsersService,
     private productService: ProductService,
     private fb: FormBuilder,
-    private orderService: OrderService) {
+    private orderService: OrderService) {        
   }
 
   ngOnInit() {
+    if (this.orders.id == undefined)
+      this.date = firebase.firestore.Timestamp.now(); 
+    else
+      this.date = this.orders.orderDate;  
+
     this.usersService.getUsers().subscribe(res => this.users = res);
     this.productService.getProducts().subscribe(res => this.products = res);
     this.productService.getProductByID(this.orders.productID)
       .subscribe((res: Products) => {
-
         if (res == undefined) {
           this.currencyCount = 0;
           this.productPrize = 0;
@@ -60,6 +66,7 @@ export class EditOrderComponent implements OnInit {
         userName: ['', Validators.required],
         productName: ['', Validators.required],
         quantity: ['', Validators.required],
+        orderDate: ['', Validators.required],
         status: ['', Validators.required]
       });
       this.editOrder.get('quantity').disabled;
@@ -68,6 +75,7 @@ export class EditOrderComponent implements OnInit {
         userName: ['customerName', Validators.required],
         productName: ['productName', Validators.required],
         quantity: [0, Validators.required],
+        orderDate: ['2018-12-12', Validators.required],
         status: ['status', Validators.required]
       });
     }
@@ -88,12 +96,13 @@ export class EditOrderComponent implements OnInit {
       });
   }
 
-  saveOrder(id, userID, productID, quantity, status) {
+  saveOrder(id, date, userID, productID, quantity, status) {
     const orders = {
       id: id,
       customerID: userID,
       productID: productID,
       quantity: quantity,
+      orderDate: firebase.firestore.Timestamp.fromDate(new Date(date)).toDate(),
       status: status
     };
     if (id == undefined) {
@@ -101,6 +110,7 @@ export class EditOrderComponent implements OnInit {
         customerID: userID,
         productID: productID,
         quantity: quantity,
+        orderDate: firebase.firestore.Timestamp.fromDate(new Date(date)).toDate(),
         status: status
       }
       this.orderService.addOrder(addOrder);
