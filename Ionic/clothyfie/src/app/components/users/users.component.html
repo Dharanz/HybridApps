@@ -3,6 +3,14 @@
   <toaster-container [toasterconfig]="config"></toaster-container>
 </div>
 <div class="container">
+  <div class="row">
+    <div class="col col-lg-4" >
+      <input type="text" class="form-control" id="txtSearch" placeholder="Search Customer Name" (keyup)="search($event)" #searchText>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<div class="container">
   <br>
   <div class="row">
     <div class="col-sm">
@@ -29,10 +37,10 @@
             <td class="text-center">
               <div class="row">
                 <div class="col col-lg-6 text-right change-size" (click)="openVerticallyCentered(content, user)">
-                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-edit" placement="top" ngbTooltip="Edit"></i>
                 </div>
                 <div class="col col-lg-5 text-left change-size-red" (click)="deleteUsers(user.id)">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa fa-trash" placement="top" ngbTooltip="Delete"></i>
                 </div>
               </div>
             </td>
@@ -55,7 +63,17 @@
     </div>
   </div>
 </div>
-
+<div class="container">
+    <div class="row">
+      <div class="col col-lg-3">
+        <button *ngIf="showStartPage" type="button" class="btn btn-outline-dark" (click)="getUsers()">Starting Page</button>
+      </div>
+      <div class="col col-lg-3"></div>
+      <div class="col">
+        <button *ngIf="showNextPage" type="button" class="btn btn-outline-dark ctrl-end" (click)="nextPage()">Next Page</button>
+      </div>
+    </div>
+  </div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">

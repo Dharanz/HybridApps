@@ -19,6 +19,9 @@ export class ProductDetailsComponent implements OnInit {
   productColor: any = [];
   productSize: any = [];
 
+  showStartPage: boolean = false;
+  showNextPage: boolean = true;
+
   latestEntry: any;
   public config: ToasterConfig =
     new ToasterConfig({
@@ -48,8 +51,11 @@ export class ProductDetailsComponent implements OnInit {
         this.spinner = false;
 
         this.productCount = this.products.length > 0 ? true : false;
+        this.showNextPage = this.products.length == 5 ? true : false;
         this.latestEntry = res[res.length - 1];
       });
+
+      this.showStartPage = false;  
   }
 
   closeModel(callback) {
@@ -96,5 +102,20 @@ export class ProductDetailsComponent implements OnInit {
 
   showAlert(event) {
     this.ts.pop('success', event);
+  }
+
+  nextPage() {
+    this.productService.nextPage(this.latestEntry.name).subscribe(
+      res => {
+      this.products = res;
+      this.spinner = false;
+
+      this.productCount = this.products.length > 0 ? true : false;
+      this.showNextPage = this.products.length == 5 ? true : false;
+      this.latestEntry = res[res.length - 1];
+      this.showStartPage = true; 
+    });
+
+    
   }
 }

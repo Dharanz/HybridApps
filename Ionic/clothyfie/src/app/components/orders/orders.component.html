@@ -6,14 +6,32 @@
   <div class="row">
     <div class="col col-lg-3">
       <div class="form-group">
-        <select class="form-control" id="startDate">
-          <option value="0">--Color--</option>
-        </select>
+        <div class="input-group">
+          <input class="form-control" placeholder="Order Date From" name="dp" [(ngModel)]="startDateModel"
+            ngbDatepicker #orderDateFrom #startDate="ngbDatepicker" (dateSelect)="searchDate(orderDateFrom.value, orderDateTo.value)">
+          <div class="input-group-append" placement="top" ngbTooltip="View Calendar">
+            <button class="btn btn-outline-secondary" (click)="startDate.toggle()" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col col-lg-3" >
-      <input type="text" class="form-control" id="txtSearch" placeholder="Search Product" #searchText>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="Order Date to" name="dp" [(ngModel)]="endDateModel"
+            ngbDatepicker #orderDateTo #endDate="ngbDatepicker" [minDate]="startDateModel" (dateSelect)="searchDate(orderDateFrom.value, orderDateTo.value)"
+            [disabled]="startDateModel == undefined">
+          <div class="input-group-append" placement="top" ngbTooltip="View Calendar">
+            <button class="btn btn-outline-secondary" (click)="endDate.toggle()" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+    <i *ngIf="startDateModel != undefined" class="fa fa-close" placement="top" ngbTooltip="Clear Filter" (click)="clearFilters()"></i>
     <div class="col">
       <button type="button" class="btn btn-outline-dark ctrl-end" (click)="openVerticallyCentered(content, 'new')">Create New Manual Order</button>
     </div>
@@ -46,10 +64,10 @@
             <td class="text-center">
               <div class="row">
                 <div class="col col-lg-6 text-right change-size" (click)="openVerticallyCentered(content, order)">
-                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-edit" placement="top" ngbTooltip="Edit"></i>
                 </div>
                 <div class="col col-lg-5 text-left change-size-red" (click)="deleteOrder(order.id)">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa fa-trash" placement="top" ngbTooltip="Delete"></i>
                 </div>
               </div>
             </td>
@@ -69,6 +87,15 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-lg-3"><button *ngIf="showStartPage" type="button" class="btn btn-outline-dark" (click)="getOrders()">Starting Page</button></div>
+    <div class="col col-lg-3"></div>
+    <div class="col">       
+      <button *ngIf="showNextPage" type="button" class="btn btn-outline-dark ctrl-end" (click)="nextPage()">Next Page</button>
     </div>
   </div>
 </div>

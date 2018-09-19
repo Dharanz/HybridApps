@@ -18,6 +18,10 @@ export class UsersService {
 
   getUsers() {
     this.userCollection = this.afs.collection('users', ref => ref.orderBy('name', 'asc').limit(5));
+    return this.userData(this.userCollection);
+  }
+
+  userData(userCollection) {
     return this.users = this.userCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
@@ -39,5 +43,15 @@ export class UsersService {
     this.userDoc.update(user);
   }
 
+  searchUser(searchStartText, searchEndText) {
+    this.userCollection = this.afs.collection('users', ref => ref.orderBy('username', 'asc').limit(5).startAt(searchStartText).endAt(searchEndText))
+    return this.userData(this.userCollection);
+  }
+
+  nextPage(latest) {
+    this.userCollection = this.afs.collection('users', ref => ref.orderBy('name', 'asc').limit(5)
+    .startAfter(latest));
+    return this.userData(this.userCollection);
+  }
 
 }

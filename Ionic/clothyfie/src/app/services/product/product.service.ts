@@ -23,7 +23,11 @@ export class ProductService {
   }
 
   getProducts() {
-    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(25));
+    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5));
+    return this.productData(this.productCollection);
+  }
+
+  productData(productCollection) {
     return this.product = this.productCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
@@ -85,17 +89,8 @@ export class ProductService {
   }
 
   getProductsByProductName(searchColor) {
-    return this.afs.collection(`product`, ref => ref.where('colorID', "==", searchColor)).snapshotChanges().pipe(
-      map(changes => {
-        return changes.map(a => {
-          const data = a.payload.doc.data() as Products;
-          data.id = a.payload.doc.id;
-          this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
-          this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
-          return data;
-        });
-      })
-    )
+    this.productCollection = this.afs.collection(`product`, ref => ref.where('colorID', "==", searchColor).limit(5));
+    return this.productData(this.productCollection);
   }
 
   getProductByID(id) {
@@ -103,17 +98,14 @@ export class ProductService {
   }
 
   searchProduct(searchStartText, searchEndText) {
-    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5).startAt(searchStartText).endAt(searchEndText))
-    return this.product = this.productCollection.snapshotChanges().pipe(
-      map(changes => {
-        return changes.map(a => {
-          const data = a.payload.doc.data() as Products;
-          data.id = a.payload.doc.id;
-          this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
-          this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
-          return data;
-        });
-      })
-    )
+    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5)
+    .startAt(searchStartText).endAt(searchEndText))
+    return this.productData(this.productCollection);
+  }
+
+  nextPage(latest) {
+    this.productCollection = this.afs.collection('product', ref => ref.orderBy('name', 'asc').limit(5)
+    .startAfter(latest));
+    return this.productData(this.productCollection);
   }
 }

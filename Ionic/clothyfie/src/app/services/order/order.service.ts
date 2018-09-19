@@ -18,7 +18,11 @@ export class OrderService {
    }
 
    getOrders() {
-    this.orderCollection = this.afs.collection('orders', ref => ref.orderBy('orderDate', 'desc').limit(25))
+    this.orderCollection = this.afs.collection('orders', ref => ref.orderBy('orderDate', 'desc').limit(5))
+    return this.orderData(this.orderCollection);
+   }
+
+   orderData(orderCollection) {
     return this.orders = this.orderCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
@@ -55,4 +59,16 @@ export class OrderService {
     this.orderDoc = this.afs.doc(`orders/${id}`);
     this.orderDoc.delete();
   } 
+
+  getOrderByDate(startDate, endDate) {
+    this.orderCollection = this.afs.collection('orders', ref => ref.orderBy('orderDate', 'desc').limit(25)
+  .where('orderDate', '>=', startDate).where('orderDate', '<=', endDate))
+  return this.orderData(this.orderCollection);
+  }
+
+  nextPage(latest) {
+    this.orderCollection = this.afs.collection('orders', ref => ref.orderBy('orderDate', 'desc').limit(5)
+    .startAfter(latest));
+    return this.orderData(this.orderCollection);
+  }
 }
