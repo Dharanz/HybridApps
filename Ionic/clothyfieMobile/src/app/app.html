@@ -1,8 +1,14 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+      <img src="../assets/imgs/logo.png"/>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3></ion-col>
+          <ion-col text-center col-6>
+            <ion-title>Name</ion-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
   </ion-header>
 
   <ion-content>
@@ -10,7 +16,7 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-    </ion-list>
+    </ion-list>   
   </ion-content>
 
 </ion-menu>
