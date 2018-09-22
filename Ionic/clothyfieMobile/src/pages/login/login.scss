@@ -1,0 +1,40 @@
+page-login {
+
+    ::-webkit-scrollbar, *::-webkit-scrollbar {
+        display: none;
+    }
+
+    .content-md {
+        background-color: #212121;
+    }        
+
+     img {
+        margin-top: 12vh;
+    }
+
+    .image {
+        height: 23vh;
+        width: 37vh;
+    }
+
+    .item-md {
+        background-color: #212121;
+        color: aliceblue;
+    }
+
+    .button-full-md {
+        border: 1px solid;
+    }
+
+    .item-md {
+        padding-left: 1px;
+    }
+
+    .input-wrapper {
+        margin-right: -15px;
+    }
+
+    button {
+        color: aliceblue;
+    }
+}

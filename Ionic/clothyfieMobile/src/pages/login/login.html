@@ -1,0 +1,40 @@
+<ion-content padding center text-center>
+  <img src="../assets/imgs/logo1.png" class="image" />
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-10>
+        <ion-list inset>
+          <ion-item>
+            <ion-label>Username</ion-label>
+            <ion-input type="text" [(ngModel)]="username"></ion-input>
+          </ion-item>
+          <br>
+          <ion-item>
+            <ion-label>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+          <br>
+          <ion-item>
+            <button ion-button full icon-end large round color="dark" (click)="getData()">
+              Login
+              <ion-icon name="arrow-round-forward"></ion-icon>
+            </button>
+            <ion-row>
+                <ion-col col-6 text-start>
+                  <button ion-button clear color="orange">Logup</button>
+                </ion-col>
+                <ion-col col-6 text-end>
+                  <button ion-button clear color="orange">Forgot?</button>
+                </ion-col>
+              </ion-row>
+          </ion-item>
+          
+        </ion-list>        
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+
+</ion-content>
