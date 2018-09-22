@@ -14,11 +14,14 @@ export class OrderService {
   orderDoc: AngularFirestoreDocument<Orders>
   orders: Observable<Orders[]>;
 
+  userID;
+
   constructor(private afs: AngularFirestore) {    
    }
 
-   getOrders() {
-    this.orderCollection = this.afs.collection('orders', ref => ref.orderBy('orderDate', 'desc').limit(5))
+   getOrders(userID) {
+     this.userID = userID;
+    this.orderCollection = this.afs.collection(`users/${this.userID}/orders`, ref => ref.orderBy('orderDate', 'desc').limit(5))
     return this.orderData(this.orderCollection);
    }
 
@@ -28,22 +31,14 @@ export class OrderService {
         return changes.map(a => {
           const data = a.payload.doc.data() as Orders;
           data.id = a.payload.doc.id;
-          this.getUserNameByID(data.customerID).subscribe((res: Users) => {
-            data.customerName = res.username;
-            res.username = '';
-          });
           return data;
         });
       })
     )
    }
 
-   getUserNameByID(id) {
-    return this.afs.doc(`users/${id}`).valueChanges();
-   }
-
    getUserName() {
-    return this.afs.collection(`users`).valueChanges();
+     return this.afs.doc(`users/${this.userID}`).valueChanges();
    }
 
    addOrder(order) {
@@ -51,23 +46,23 @@ export class OrderService {
    }
 
    updateOrder(order) {
-    this.orderDoc = this.afs.doc(`orders/${order.id}`);
+    this.orderDoc = this.afs.doc(`users/${this.userID}/orders/${order.id}`);
     this.orderDoc.update(order);
   }
 
   deleteOrder(id) {
-    this.orderDoc = this.afs.doc(`orders/${id}`);
+    this.orderDoc = this.afs.doc(`users/${this.userID}/orders/${id}`);
     this.orderDoc.delete();
   } 
 
   getOrderByDate(startDate, endDate) {
-    this.orderCollection = this.afs.collection('orders', ref => ref.orderBy('orderDate', 'desc').limit(25)
+    this.orderCollection = this.afs.collection(`users/${this.userID}/orders`, ref => ref.orderBy('orderDate', 'desc').limit(25)
   .where('orderDate', '>=', startDate).where('orderDate', '<=', endDate))
   return this.orderData(this.orderCollection);
   }
 
   nextPage(latest) {
-    this.orderCollection = this.afs.collection('orders', ref => ref.orderBy('orderDate', 'desc').limit(5)
+    this.orderCollection = this.afs.collection(`users/${this.userID}/orders`, ref => ref.orderBy('orderDate', 'desc').limit(5)
     .startAfter(latest));
     return this.orderData(this.orderCollection);
   }

@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit {
 
   latestEntry: any;
   showStartPage: boolean = false;
-  showNextPage: boolean = true;
+  showNextPage: boolean = false;
 
   public config: ToasterConfig =
     new ToasterConfig({

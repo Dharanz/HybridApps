@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <form [formGroup]="editOrder" (ngSubmit)="saveOrder(orders.id, orderDate.value, userName.value, productName.value, quantity.value, status.value)">
+      <form [formGroup]="editOrder" (ngSubmit)="saveOrder(orders.id, orderDate.value, productName.value, quantity.value, status.value)">
         <div class="form-group" *ngIf="orders.id != undefined">
           <label for="orderID">Order ID</label>
           <input type="text" class="form-control" id="orderID" [value]="orders.id" #orderID disabled>
@@ -16,18 +16,6 @@
                 <i class="fa fa-calendar"></i>
               </button>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col" *ngIf="orders.id != undefined">
-            <label for="CustomerID">Customer ID</label>
-            <input type="text" class="form-control" id="CustomerID" [value]="orders.customerID" #customerID disabled>
-          </div>
-          <div class="form-group col">
-            <label for="username">Customer Name</label>
-            <select class="form-control" formControlName="userName" #userName id="username" name="customerID" [(ngModel)]="orders.customerID">
-              <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
-            </select>
           </div>
         </div>
         <div class="row">

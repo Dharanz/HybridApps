@@ -20,7 +20,6 @@ export class EditOrderComponent implements OnInit {
   @Output() showAlert: EventEmitter<String> = new EventEmitter<String>();
   @Input() validation: boolean;
 
-  users: any = [];
   products: any = [];
   productPrize;
   currencyCount: Number;
@@ -41,7 +40,6 @@ export class EditOrderComponent implements OnInit {
     else
       this.date = this.orders.orderDate;  
 
-    this.usersService.getUsers().subscribe(res => this.users = res);
     this.productService.getProducts().subscribe(res => this.products = res);
     this.productService.getProductByID(this.orders.productID)
       .subscribe((res: Products) => {
@@ -63,7 +61,6 @@ export class EditOrderComponent implements OnInit {
   editOrderValidation() {
     if (this.validation == true) {
       this.editOrder = this.fb.group({
-        userName: ['', Validators.required],
         productName: ['', Validators.required],
         quantity: ['', Validators.required],
         orderDate: ['', Validators.required],
@@ -72,7 +69,6 @@ export class EditOrderComponent implements OnInit {
       this.editOrder.get('quantity').disabled;
     } else {
       this.editOrder = this.fb.group({
-        userName: ['customerName', Validators.required],
         productName: ['productName', Validators.required],
         quantity: [0, Validators.required],
         orderDate: ['2018-12-12', Validators.required],
@@ -96,10 +92,9 @@ export class EditOrderComponent implements OnInit {
       });
   }
 
-  saveOrder(id, date, userID, productID, quantity, status) {
+  saveOrder(id, date, productID, quantity, status) {
     const orders = {
       id: id,
-      customerID: userID,
       productID: productID,
       quantity: quantity,
       orderDate: firebase.firestore.Timestamp.fromDate(new Date(date)).toDate(),
@@ -107,7 +102,6 @@ export class EditOrderComponent implements OnInit {
     };
     if (id == undefined) {
       const addOrder = {
-        customerID: userID,
         productID: productID,
         quantity: quantity,
         orderDate: firebase.firestore.Timestamp.fromDate(new Date(date)).toDate(),

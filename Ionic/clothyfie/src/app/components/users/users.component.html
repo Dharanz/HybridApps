@@ -35,14 +35,17 @@
             <td class="text-center">{{ user.age }}</td>
             <td class="text-left">{{ user.address }}</td>
             <td class="text-center">
-              <div class="row">
-                <div class="col col-lg-6 text-right change-size" (click)="openVerticallyCentered(content, user)">
-                  <i class="fa fa-edit" placement="top" ngbTooltip="Edit"></i>
-                </div>
-                <div class="col col-lg-5 text-left change-size-red" (click)="deleteUsers(user.id)">
-                  <i class="fa fa-trash" placement="top" ngbTooltip="Delete"></i>
-                </div>
-              </div>
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-3 change-size" (click)="openVerticallyCentered(content, user)">
+                        <i class="fa fa-edit" placement="top" ngbTooltip="Edit"></i>
+                    </div>
+                    <div class="col-md-2 change-size-red" (click)="deleteUsers(user.id)">
+                        <i class="fa fa-trash" placement="top" ngbTooltip="Delete"></i>
+                    </div>
+                    <div class="col col-lg-2" style="padding-left:6px;">
+                        <i class="fa fa-forward" placement="top" ngbTooltip="View Orders" [routerLink] = "['/orders', user.id]"></i>
+                    </div>
+                  </div>
             </td>
           </tr>
         </tbody>

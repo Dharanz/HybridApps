@@ -3,12 +3,20 @@
   <toaster-container [toasterconfig]="config"></toaster-container>
 </div>
 <div class="container-fluid">
+    <div class="row">
+      <div class="col align-self-start">
+        <h3>{{ userName }}'s Order(s)</h3>
+      </div>
+    </div>
+  </div>
+  <br>
+<div class="container-fluid">
   <div class="row">
     <div class="col col-lg-3">
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" placeholder="Order Date From" name="dp" [(ngModel)]="startDateModel"
-            ngbDatepicker #orderDateFrom #startDate="ngbDatepicker" (dateSelect)="searchDate(orderDateFrom.value, orderDateTo.value)">
+          <input class="form-control" placeholder="Order Date From" name="dp" [(ngModel)]="startDateModel" ngbDatepicker #orderDateFrom
+            #startDate="ngbDatepicker" (dateSelect)="searchDate(orderDateFrom.value, orderDateTo.value)">
           <div class="input-group-append" placement="top" ngbTooltip="View Calendar">
             <button class="btn btn-outline-secondary" (click)="startDate.toggle()" type="button">
               <i class="fa fa-calendar"></i>
@@ -17,12 +25,11 @@
         </div>
       </div>
     </div>
-    <div class="col col-lg-3" >
+    <div class="col col-lg-3">
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" placeholder="Order Date to" name="dp" [(ngModel)]="endDateModel"
-            ngbDatepicker #orderDateTo #endDate="ngbDatepicker" [minDate]="startDateModel" (dateSelect)="searchDate(orderDateFrom.value, orderDateTo.value)"
-            [disabled]="startDateModel == undefined">
+          <input class="form-control" placeholder="Order Date to" name="dp" [(ngModel)]="endDateModel" ngbDatepicker #orderDateTo #endDate="ngbDatepicker"
+            [minDate]="startDateModel" (dateSelect)="searchDate(orderDateFrom.value, orderDateTo.value)" [disabled]="startDateModel == undefined">
           <div class="input-group-append" placement="top" ngbTooltip="View Calendar">
             <button class="btn btn-outline-secondary" (click)="endDate.toggle()" type="button">
               <i class="fa fa-calendar"></i>
@@ -38,14 +45,12 @@
   </div>
 </div>
 <div class="container-fluid">
-  <br>
   <div class="row">
     <div class="col-sm">
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col" class="text-left">OrderID</th>
-            <th scope="col" class="text-left">Customer Name</th>
             <th scope="col" class="text-left">Product ID</th>
             <th scope="col" class="text-center">Order Date</th>
             <th scope="col" class="text-center">Qty</th>
@@ -56,7 +61,6 @@
         <tbody *ngIf="orderCount">
           <tr *ngFor="let order of orders">
             <td class="text-left">{{ order.id }}</td>
-            <td class="text-left">{{ order.customerName }}</td>
             <td class="text-left">{{ order.productID }}</td>
             <td class="text-center">{{ order.orderDate.toDate() | date:'yyyy-MM-dd' }}</td>
             <td class="text-center">{{ order.quantity }}</td>
@@ -92,9 +96,11 @@
 </div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col col-lg-3"><button *ngIf="showStartPage" type="button" class="btn btn-outline-dark" (click)="getOrders()">Starting Page</button></div>
+    <div class="col col-lg-3">
+      <button *ngIf="showStartPage" type="button" class="btn btn-outline-dark" (click)="getOrders()">Starting Page</button>
+    </div>
     <div class="col col-lg-3"></div>
-    <div class="col">       
+    <div class="col">
       <button *ngIf="showNextPage" type="button" class="btn btn-outline-dark ctrl-end" (click)="nextPage()">Next Page</button>
     </div>
   </div>

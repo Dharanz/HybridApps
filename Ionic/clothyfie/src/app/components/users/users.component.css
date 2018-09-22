@@ -5,11 +5,13 @@
 .change-size {
     font-size: 1.5;
     color: #007bff;
+    padding-left: 1px;
 }
 
 .change-size-red {
     font-size: 1.5;
     color: red;
+    padding-left: 0px;
 }
 
 .dark-modal .modal-content {

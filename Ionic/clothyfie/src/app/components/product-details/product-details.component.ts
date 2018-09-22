@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   productSize: any = [];
 
   showStartPage: boolean = false;
-  showNextPage: boolean = true;
+  showNextPage: boolean = false;
 
   latestEntry: any;
   public config: ToasterConfig =
