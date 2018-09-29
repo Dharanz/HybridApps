@@ -8,6 +8,9 @@ import { IonicPage, ViewController } from 'ionic-angular';
 })
 export class RegisterPage {
 
+  name;  username;  age;  email;  phone;
+  address;  password;  conformPassword;
+
   constructor(private viewCtrl: ViewController) {
   }
 
