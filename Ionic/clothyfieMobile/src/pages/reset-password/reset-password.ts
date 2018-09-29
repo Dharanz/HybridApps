@@ -25,18 +25,18 @@ export class ResetPasswordPage implements OnInit {
   }
 
   cancel() {
-    this.viewCtrl.dismiss();
+  this.viewCtrl.dismiss(false);
   }
 
   ResetPassword() {
     if (this.newPassword == this.conformPassword) {
-      this.loginProvider.updatePassword(this.username, this.conformPassword);
-      this.viewCtrl.dismiss();
+      this.loginProvider.updatePassword(this.username, this.conformPassword);  
+      this.toast.presentToast('Password has Resetted!!');
+      this.viewCtrl.dismiss(true);
     }
     else {
       this.toast.presentToast('Passwords Does Not Match!');
     }
-    return;
   }
 
 }

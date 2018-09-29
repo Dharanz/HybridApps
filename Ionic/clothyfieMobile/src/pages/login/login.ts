@@ -16,6 +16,7 @@ export class LoginPage {
 
   username;
   password;
+  isPop: boolean = false;
 
   constructor(private loginProvider: LoginProvider,
     private toast: UIToast, public loader: UILoader,
@@ -31,8 +32,16 @@ export class LoginPage {
           this.toast.presentToast('Invalid UserName!!');
         }
         else {
-          let model = this.modalCtrl.create(ResetPasswordPage, {username: this.username });
-          model.present();
+          if (this.isPop == false) {
+            let model = this.modalCtrl.create(ResetPasswordPage, {username: this.username });
+            model.onDidDismiss((data: any) => {
+              this.isPop = data;
+            });
+            model.present();
+          }
+          else {
+            return;
+          }           
         }
       });
   }
