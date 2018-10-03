@@ -39,4 +39,8 @@ export class LoginProvider {
       });
     });
   }
+
+  createUser(user: Users) {
+    this.afs.collection('users').add(user);
+  }
 }

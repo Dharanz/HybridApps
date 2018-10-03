@@ -12,50 +12,52 @@
 
 <ion-content padding>
   <ion-list inset>
-      <ion-item>
-          <ion-label color="dark" floating>Name</ion-label>
-          <ion-input type="text" clearInput [(ngModel)]="name"></ion-input>
-      </ion-item>
-      <br>
-      <ion-item>
-          <ion-label color="dark" floating>Username</ion-label>
-          <ion-input type="text" maxlength="10" clearInput [(ngModel)]="username"></ion-input>
-      </ion-item>
-      <br>
-      <ion-item>
-          <ion-label color="dark" floating>DOB</ion-label>
-          <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="age"></ion-datetime>
-      </ion-item>
-      <br>
-      <ion-item>
-          <ion-label color="dark" floating>Email</ion-label>
-          <ion-input type="email" clearInput [(ngModel)]="email"></ion-input>
-      </ion-item>
-      <br>
-      <ion-item>
-          <ion-label color="dark" floating>Phone</ion-label>
-          <ion-input type="number" maxlength="10" clearInput [(ngModel)]="phone"></ion-input>
-      </ion-item>
-      <br>
-      <ion-item>
-        <ion-label color="dark" floating>Password</ion-label>
-        <ion-input type="password" maxlength="10" clearInput [(ngModel)]="Password"></ion-input>
-      </ion-item>      
-      <br>
-      <ion-item>
-        <ion-label color="dark" floating>Confirm-Password</ion-label>
-        <ion-input type="password" maxlength="10" clearInput [(ngModel)]="conformPassword"></ion-input>
-      </ion-item>
-      <br>
-      <ion-item>
-        <ion-label color="dark" floating>Address</ion-label>
-        <ion-textarea clearInput [(ngModel)]="address"></ion-textarea>
-      </ion-item>
-      <br>
-      <ion-item>
-        <button ion-button full large color="dark" (click)="ResetPassword()">
-          Create
-        </button>
-      </ion-item>          
+    <form [formGroup]="registerValidation" (ngSubmit)="register()">
+        <ion-item>
+            <ion-label color="dark" floating>Name</ion-label>
+            <ion-input type="text" clearInput formControlName="name" [(ngModel)]="name" required></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-label color="dark" floating>Username</ion-label>
+            <ion-input type="text" maxlength="10" clearInput formControlName="username" [(ngModel)]="username" required></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-label color="dark" floating>DOB</ion-label>
+            <ion-datetime displayFormat="DD-MM-YYYY" formControlName="age" [(ngModel)]="age" required></ion-datetime>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-label color="dark" floating>Email</ion-label>
+            <ion-input type="email" clearInput formControlName="email" [(ngModel)]="email" required></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-label color="dark" floating>Phone</ion-label>
+            <ion-input type="number" maxlength="10" clearInput formControlName="phone" [(ngModel)]="phone" required></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label color="dark" floating>Password</ion-label>
+          <ion-input type="password" maxlength="10" clearInput formControlName="password" [(ngModel)]="password" required></ion-input>
+        </ion-item>      
+        <br>
+        <ion-item>
+          <ion-label color="dark" floating>Confirm-Password</ion-label>
+          <ion-input type="password" maxlength="10" clearInput formControlName="conformPassword" [(ngModel)]="conformPassword" [disabled]="password == undefined" required></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label color="dark" floating>Address</ion-label>
+          <ion-textarea clearInput formControlName="address" [(ngModel)]="address" required></ion-textarea>
+        </ion-item>
+        <br>
+        <ion-item>
+          <button ion-button full large color="dark" type="submit" [disabled]="registerValidation.invalid">
+            Create
+          </button>
+        </ion-item>    
+    </form>            
     </ion-list>   
 </ion-content>
