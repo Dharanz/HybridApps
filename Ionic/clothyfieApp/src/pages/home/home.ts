@@ -1,30 +1,30 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, ModalController, App, ViewController } from 'ionic-angular';
-import { Storage  } from '@ionic/storage';
-import { LoginProvider } from './../../providers/login/login';
-import { Users } from './../../models/users';
-import { UIToast } from './../../ui/toast.component';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { LoginProvider } from '../../providers/login/login';
+import { UIToast } from '../../ui/toast.component';
 import { UILoader } from '../../ui/loader.component';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { ResetPasswordPage } from './../reset-password/reset-password';
 import { RegisterPage } from './../register/register';
-import { HomePage } from './../home/home';
+import { Users } from '../../models/users';
+import { Storage  } from '@ionic/storage';
+import { DashboardPage } from '../dashboard/dashboard';
 
-
-@IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-home',
+  templateUrl: 'home.html'
 })
-export class LoginPage {
+export class HomePage {
+
   username;
   password;
 
-  constructor(private loginProvider: LoginProvider,
+  constructor(public navCtrl: NavController,
+    private loginProvider: LoginProvider,
     private toast: UIToast, public loader: UILoader,
     private modalCtrl: ModalController,
-    private storage: Storage, public viewCtrl: ViewController,
-    public appCtrl: App) {
-      
+    private storage: Storage) {
+
   }
 
   forgotPassword() {
@@ -66,7 +66,7 @@ export class LoginPage {
             {
               this.storage.set('username', this.username);
               this.storage.set('password', this.password);
-              this.appCtrl.getRootNav().push(HomePage);
+              this.navCtrl.push(DashboardPage);
             }
             else {
               this.toast.presentToast('Invalid UserName or Password!!');
@@ -75,4 +75,5 @@ export class LoginPage {
         }
       });
   }
+
 }

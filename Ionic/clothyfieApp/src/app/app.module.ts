@@ -2,46 +2,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicStorageModule } from '@ionic/storage';
-
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login'
-import { ResetPasswordPage } from './../pages/reset-password/reset-password';
-import { RegisterPage } from './../pages/register/register';
-
-import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { IonicStorageModule } from '@ionic/storage';
+import { firebaseConfig } from './credentials';
+
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
 import { LoginProvider } from '../providers/login/login';
+import { ResetPasswordPage } from './../pages/reset-password/reset-password';
+import { RegisterPage } from '../pages/register/register';
+import { DashboardPage } from './../pages/dashboard/dashboard';
 
-import { UIToast } from './../ui/toast.component';
+import { UIToast } from '../ui/toast.component';
 import { UILoader } from '../ui/loader.component';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBJKvOx2bMOwk_V-66UhCzl9f9dQjKmoBk",
-    authDomain: "clothyfie.firebaseapp.com",
-    databaseURL: "https://clothyfie.firebaseio.com",
-    projectId: "clothyfie",
-    storageBucket: "clothyfie.appspot.com",
-    messagingSenderId: "828480023152"
-}
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage,
     ResetPasswordPage,
     RegisterPage,
-    UIToast,
-    UILoader
+    DashboardPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(LoginPage),
+    IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     IonicStorageModule.forRoot(),
@@ -52,17 +41,15 @@ const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage,
     ResetPasswordPage,
-    RegisterPage
+    RegisterPage,
+    DashboardPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginProvider,
-    LoginPage,
-    HomePage,
     UIToast,
     UILoader
   ]

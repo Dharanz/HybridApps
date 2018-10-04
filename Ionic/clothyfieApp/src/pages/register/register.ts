@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UIToast } from './../../ui/toast.component';
-import { Users } from './../../models/users';
-import { LoginProvider } from './../../providers/login/login';
+import { UIToast } from '../../ui/toast.component';
+import { LoginProvider } from '../../providers/login/login';
+import { Users } from '../../models/users';
 
 @IonicPage()
 @Component({
@@ -17,8 +17,14 @@ export class RegisterPage {
 
   registerValidation: FormGroup;
 
-  constructor(private navCtrl: NavController, private fb: FormBuilder, private toast: UIToast, private loginProvider: LoginProvider) {
-    this.registerUserValidation();
+  constructor(public navCtrl: NavController, 
+    private fb: FormBuilder, 
+    private toast: UIToast, 
+    private loginProvider: LoginProvider) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegisterPage');
   }
 
   registerUserValidation() {

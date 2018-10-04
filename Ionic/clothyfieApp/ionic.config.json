@@ -1,0 +1,7 @@
+{
+  "name": "clothyfieApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
