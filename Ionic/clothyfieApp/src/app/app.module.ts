@@ -19,6 +19,12 @@ import { DashboardPage } from './../pages/dashboard/dashboard';
 
 import { UIToast } from '../ui/toast.component';
 import { UILoader } from '../ui/loader.component';
+import { ProfilePage } from '../pages/profile/profile';
+import { OrdersPage } from '../pages/orders/orders';
+import { OrderMessagePage } from '../pages/order-message/order-message';
+import { ProductPage } from '../pages/product/product';
+import { ProductDetailsPage } from '../pages/product-details/product-details';
+import { ProductListingPage } from '../pages/product-listing/product-listing';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,13 @@ import { UILoader } from '../ui/loader.component';
     HomePage,
     ResetPasswordPage,
     RegisterPage,
-    DashboardPage
+    DashboardPage,
+    ProfilePage,
+    OrdersPage,
+    OrderMessagePage,
+    ProductPage,
+    ProductDetailsPage,
+    ProductListingPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +55,13 @@ import { UILoader } from '../ui/loader.component';
     HomePage,
     ResetPasswordPage,
     RegisterPage,
-    DashboardPage
+    DashboardPage,
+    ProfilePage,
+    OrdersPage,
+    OrderMessagePage,
+    ProductPage,
+    ProductDetailsPage,
+    ProductListingPage
   ],
   providers: [
     StatusBar,

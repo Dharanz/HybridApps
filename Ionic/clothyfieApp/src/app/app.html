@@ -1,1 +1,28 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+    <ion-header class="myCard">
+        <img src="../assets/imgs/logo1.png" class="imgSize" />
+        <ion-grid class="myOverlay">
+            <ion-row>
+                <ion-col col-3></ion-col>
+                <ion-col text-center col-6>
+                    <h3 style="margin-top: 0.6rem;">Name</h3>
+                </ion-col>
+                <ion-col col-3 text-end>
+                    <ion-buttons>
+                        <button menuClose ion-button color="dark" icon-only clear (click)="goToProfile()">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </button>
+                    </ion-buttons>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-header>
+    <ion-content class="changeBG">
+        <ion-list>
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="changeBG">{{ p.title }}</button>
+            <ion-item class="changeBG"></ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

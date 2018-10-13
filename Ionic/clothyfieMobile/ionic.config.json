@@ -1,7 +1,0 @@
-{
-  "name": "clothyfieMobile",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}

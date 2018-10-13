@@ -21,6 +21,7 @@ export class RegisterPage {
     private fb: FormBuilder, 
     private toast: UIToast, 
     private loginProvider: LoginProvider) {
+      this.registerUserValidation();
   }
 
   ionViewDidLoad() {

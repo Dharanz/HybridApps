@@ -14,3 +14,51 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+// .imgSize {
+//     height: 250px;
+//     width: 100%;
+// }
+
+.imgSize{
+    height: 250px;
+    width: 100%;
+  }
+  
+  .myCard{
+    position:relative;
+  
+  }
+  
+  .myOverlay{
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      z-index: 99;
+      bottom: 0px;
+      opacity: 0.7;
+      background: #fff;
+      color: #000;
+  
+  }
+
+  .content-md {
+    color: #fff;
+}
+
+.item-md {
+    color: #fff;
+}
+
+.changeBG {
+    background-color: #424242;
+    padding-top: 8px;
+}
+
+.md ion-menu[type=overlay] .menu-inner {
+    box-shadow: 0 0 22px rgba(0, 0, 0, 2);
+}
+
+
+
+

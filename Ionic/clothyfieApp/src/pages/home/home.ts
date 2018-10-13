@@ -27,6 +27,15 @@ export class HomePage {
 
   }
 
+  ionViewDidLoad() {
+    this.storage.get('username').then((val) => {
+      if (val != null) {
+        this.navCtrl.push(DashboardPage);
+      }
+    });
+  }
+
+
   forgotPassword() {
     this.loader.presentLoader();
     this.loginProvider.getLoginDetails(this.username).
@@ -66,6 +75,8 @@ export class HomePage {
             {
               this.storage.set('username', this.username);
               this.storage.set('password', this.password);
+              this.username = '';
+              this.password = '';
               this.navCtrl.push(DashboardPage);
             }
             else {
