@@ -1,3 +1,9 @@
 page-profile {
-
+    ::-webkit-scrollbar, *::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .item-md {
+        color: #000 !important;
+    }
 }

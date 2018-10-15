@@ -2,11 +2,54 @@
 
   <ion-navbar>
     <ion-title>Edit Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="orange" (click)="Save()">
+        <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <form>
+        <ion-item>
+          <ion-icon ios="ios-person" md="md-person" item-start></ion-icon>
+          <ion-label color="dark" stacked>Full Name</ion-label>
+          <ion-input type="text" placeholder="Name"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-icon ios="ios-contact" md="md-contact" item-start></ion-icon>
+            <ion-label color="dark" stacked>UserName</ion-label>
+            <ion-input type="text" placeholder="Username"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-icon ios="ios-calendar" md="md-calendar" item-start></ion-icon>
+            <ion-label color="dark" stacked>DOB</ion-label>
+            <ion-datetime displayFormat="DD-MM-YYYY" disabled></ion-datetime>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>
+            <ion-label color="dark" stacked>Email</ion-label>
+            <ion-input type="email" placeholder="Email"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-icon ios="ios-phone-portrait" md="md-phone-portrait" item-start></ion-icon>
+            <ion-label color="dark" stacked>Phone</ion-label>
+            <ion-input type="text" maxlength="10" placeholder="Phone"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-icon ios="ios-home" md="md-home" item-start></ion-icon>
+            <ion-label color="dark" stacked>Address</ion-label>
+            <ion-textarea placeholder="Address"></ion-textarea>
+        </ion-item>
+    </form>
+  </ion-list>
 </ion-content>

@@ -6,6 +6,9 @@ import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { ProductPage } from '../pages/product/product';
+import { OrdersPage } from '../pages/orders/orders';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,14 +16,22 @@ import { ProfilePage } from '../pages/profile/profile';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = HomePage;
+  username;
+
   pages = [ 
-    {title: 'Home', component: ProfilePage},
+    {title: 'My Clothyfie Home', component: DashboardPage},
+    {title: 'Products for Me', component: ProductPage},
+    {title: 'Orders for Me', component: OrdersPage},
     {title: 'Logout', component: HomePage}
   ];
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen,
     private storage: Storage) {
     this.initializeApp();
+    this.storage.get('username').then(val => {
+      this.username = val != null ? val : "Hi Clothyfier"
+    });
+    
   }
 
   initializeApp() {
@@ -41,7 +52,10 @@ export class MyApp {
   }
 
   goToProfile() {
-    this.nav.push(ProfilePage);
+    this.nav.push(ProfilePage, {username: this.username});
+  }
+
+  clcicky() {
+    console.log("sds");
   }
 }
-

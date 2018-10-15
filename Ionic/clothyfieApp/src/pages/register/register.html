@@ -14,34 +14,42 @@
   <ion-list inset>
     <form [formGroup]="registerValidation" (ngSubmit)="register()">
         <ion-item>
+            <ion-icon ios="ios-person" md="md-person" item-start></ion-icon>
             <ion-label color="dark" floating>Name</ion-label>
             <ion-input type="text" clearInput formControlName="name" [(ngModel)]="name" required></ion-input>
         </ion-item>
         <ion-item>
+            <ion-icon ios="ios-contact" md="md-contact" item-start></ion-icon>
             <ion-label color="dark" floating>Username</ion-label>
             <ion-input type="text" maxlength="10" clearInput formControlName="username" [(ngModel)]="username" required></ion-input>
         </ion-item>
         <ion-item>
+            <ion-icon ios="ios-calendar" md="md-calendar" item-start></ion-icon>
             <ion-label color="dark" floating>DOB</ion-label>
             <ion-datetime displayFormat="DD-MM-YYYY" formControlName="age" [(ngModel)]="age" required></ion-datetime>
         </ion-item>
         <ion-item>
+            <ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>
             <ion-label color="dark" floating>Email</ion-label>
             <ion-input type="email" clearInput formControlName="email" [(ngModel)]="email" required></ion-input>
         </ion-item>
         <ion-item>
+            <ion-icon ios="ios-phone-portrait" md="md-phone-portrait" item-start></ion-icon>
             <ion-label color="dark" floating>Phone</ion-label>
             <ion-input type="number" maxlength="10" clearInput formControlName="phone" [(ngModel)]="phone" required></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item> 
+          <ion-icon ios="ios-lock" md="md-lock" item-start></ion-icon>
           <ion-label color="dark" floating>Password</ion-label>
           <ion-input type="password" maxlength="10" clearInput formControlName="password" [(ngModel)]="password"></ion-input>
         </ion-item> 
         <ion-item>
+            <ion-icon ios="ios-unlock" md="md-unlock" item-start></ion-icon>
           <ion-label color="dark" floating>Confirm-Password</ion-label>
           <ion-input type="password" maxlength="10" clearInput formControlName="conformPassword" [(ngModel)]="conformPassword" [disabled]="password == undefined" required></ion-input>
         </ion-item>
         <ion-item>
+            <ion-icon ios="ios-home" md="md-home" item-start></ion-icon>
           <ion-label color="dark" floating>Address</ion-label>
           <ion-textarea clearInput formControlName="address" [(ngModel)]="address" required></ion-textarea>
         </ion-item>
