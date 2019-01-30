@@ -9,19 +9,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-grid>
-        <ion-row>
-          <ion-col col-12><ion-slides *ngIf="clothSlideShowImages" autoplay="2000" loop="true" speed="2000">
-              <ion-slide *ngFor="let slide of clothSlideShowImages">
-                <ion-img col-12 [src]="slide.image" class="imgBackground"></ion-img>
-              </ion-slide>
-            </ion-slides>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>This column will take 6 columns</ion-col>
-        </ion-row>
-      </ion-grid>
-
+<ion-content>
+  <div class="list card">
+    <div class="item item-image" id="image-container" style="height: 100%;">
+      <ion-slides *ngIf="clothSlideShowImages" autoplay="2000" loop="true" speed="2000">
+        <ion-slide *ngFor="let slide of clothSlideShowImages">
+          <img src="{{slide.image}}" class="imgBackground" />
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>  
 </ion-content>
