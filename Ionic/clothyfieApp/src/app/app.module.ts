@@ -25,6 +25,7 @@ import { OrderMessagePage } from '../pages/order-message/order-message';
 import { ProductPage } from '../pages/product/product';
 import { ProductDetailsPage } from '../pages/product-details/product-details';
 import { ProductListingPage } from '../pages/product-listing/product-listing';
+import { CategoryProvider } from '../providers/category/category';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ProductListingPage } from '../pages/product-listing/product-listing';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginProvider,
     UIToast,
-    UILoader
+    UILoader,
+    CategoryProvider
   ]
 })
 export class AppModule {}

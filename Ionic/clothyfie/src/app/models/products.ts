@@ -9,6 +9,8 @@ export interface Products {
     prize?: Number;
     quantity?: Number;
     images?: String;
+    CategoryID?: Number;
+    CategoryName?: String;
 }
 
 export interface ProductColor {
@@ -19,4 +21,9 @@ export interface ProductColor {
 export interface ProductSize {
     id?: String;
     size?: String;
+}
+
+export interface ProductCategory {
+    id?: String;
+    category?: String;
 }

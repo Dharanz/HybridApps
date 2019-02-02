@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <form [formGroup]="editProduct" (ngSubmit)="saveProduct(products.id, name.value, color.value, brand.value, size.value, prize.value, quantity.value, images.textContent)">
+      <form [formGroup]="editProduct" (ngSubmit)="saveProduct(products.id, name.value, color.value, brand.value, category.value, size.value, prize.value, quantity.value, images.textContent)">
         <div class="row justify-content-md-center">
           <div class="col col-lg-2"></div>
           <div class="col-md-auto radius">
@@ -26,6 +26,14 @@
           <label for="brand">Brand</label>
           <input type="text" class="form-control" id="brand" formControlName="brand" value={{products.brand}} #brand placeholder="Brand"
             required>
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label for="category">Category Name</label>
+            <select class="form-control" formControlName="category" #category id="category" [(ngModel)]="products.CategoryID">
+              <option *ngFor="let category of productCategories" [value]="category.id">{{ category.CategoryName }}</option>
+            </select>
+          </div>
         </div>
         <div class="row">
           <div class="form-group col">

@@ -17,6 +17,7 @@ export class EditProductComponent implements OnInit {
   @Input() validation: boolean;
   productColor: any = [];
   productSize: any = [];
+  productCategories: any = [];
   @Output() closeModel: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() showAlert: EventEmitter<String> = new EventEmitter<String>();
 
@@ -31,6 +32,7 @@ export class EditProductComponent implements OnInit {
   ngOnInit() {
     this.productService.getProductColor().subscribe(res => this.productColor = res);
     this.productService.getProductSize().subscribe(res => this.productSize = res);
+    this.productService.getProductCategory().subscribe(res => this.productCategories = res);
     this.editProductValidation();
   }
 
@@ -40,6 +42,7 @@ export class EditProductComponent implements OnInit {
         name: ['', Validators.required],
         color: ['', Validators.required],
         brand: ['', Validators.required],
+        category: ['', Validators.required],
         size: ['', Validators.required],
         prize: [0, Validators.required],
         quantity: [0, Validators.required]
@@ -52,6 +55,7 @@ export class EditProductComponent implements OnInit {
         name: ['name', Validators.required],
         color: ['color', Validators.required],
         brand: ['brand', Validators.required],
+        category: ['category', Validators.required],
         size: ['size', Validators.required],
         prize: [0, Validators.required],
         quantity: [0, Validators.required]
@@ -64,9 +68,9 @@ export class EditProductComponent implements OnInit {
     }
   }
 
-  saveProduct(id, name, colorID, brand, sizeID, prize, quantity, images) {
+  saveProduct(id, name, colorID, brand, CategoryID, sizeID, prize, quantity, images) {
     images = this.imgsrc;
-    const products: Products = { id, name, colorID, brand, sizeID, prize, quantity, images };
+    const products: Products = { id, name, colorID, brand, sizeID, prize, quantity, images, CategoryID };
     if (id == undefined) {
       const addProduct: Products = {
         name: name,
@@ -75,7 +79,8 @@ export class EditProductComponent implements OnInit {
         sizeID: sizeID,
         prize: prize,
         quantity: quantity,
-        images: this.imgsrc
+        images: this.imgsrc,
+        CategoryID: CategoryID
       }
       this.productService.addProduct(addProduct);
       this.showAlert.emit('Created Successfully');

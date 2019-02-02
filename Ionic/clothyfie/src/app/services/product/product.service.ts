@@ -16,8 +16,6 @@ export class ProductService {
 
   productPrize: Observable<Products>;
 
-
-
   constructor(private afs: AngularFirestore) {
     this.getProducts();
   }
@@ -35,6 +33,7 @@ export class ProductService {
           data.id = a.payload.doc.id;
           this.getProductColorByID(data.colorID).subscribe((res: Products) => data.color = res.color);
           this.getProductSizeByID(data.sizeID).subscribe((res: Products) => data.size = res.size);
+          this.getProductCategoryByID(data.CategoryID).subscribe((res: Products) => data.CategoryName = res.CategoryName);
           return data;
         });
       })
@@ -70,8 +69,24 @@ export class ProductService {
     )
   }
 
+  getProductCategory() {
+    return this.afs.collection(`Categories`).snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as ProductCategory;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      })
+    )
+  }
+
   getProductSizeByID(id) {
     return this.afs.doc(`productSize/${id}`).valueChanges();
+  }
+
+  getProductCategoryByID(id) {
+    return this.afs.doc(`Categories/${id}`).valueChanges();
   }
 
   addProduct(product: Products) {
