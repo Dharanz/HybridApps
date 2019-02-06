@@ -1,5 +1,9 @@
 page-dashboard {
 
+    ion-content {
+        --overflow: hidden;
+    }
+
     .swiper-slide img {
         width: 100%;
     }
@@ -13,7 +17,7 @@ page-dashboard {
         height: 100%;
         margin-left: -10px;
       }
-      
+
       .my-card.card{
         overflow: visible;
       }
@@ -21,4 +25,55 @@ page-dashboard {
       img {
           width: 100%;
       }
+
+      .upper-card-header {
+        background-image: url(../../assets/imgs/ClothSample/upper.jpg);
+        background-size: cover;
+      }
+
+    .lower-card-header {
+        background-image: url(../../assets/imgs/ClothSample/lower.jpg);
+        background-size: cover;
+    }
+
+    .material-card-header {
+        background-image: url(../../assets/imgs/ClothSample/material.jpg);
+        background-size: cover;
+    }
+
+    .item-md {
+        padding-left: 0px;
+        background-color: #000000;
+    }
+
+    .item-inner {
+        padding-right: 0px !important;
+    }
+
+
+    ion-item {
+
+        .card-content-md {
+            padding: 0px;
+            height: 100%;
+        }
+
+        .titleDiv {
+            height: 100%;
+            padding-top: 11%;
+            font-size: 45pt;
+            background: rgba(0, 0, 0, 0.4);
+            color: #000000;
+        }
+
+
+    .label-md {
+        margin-right: 0px;
+    }
+
+        .label-md, .card-md, .card-title, ion-card-header {
+            height: 100%;
+            text-align: center;
+        }
+    }
 }
