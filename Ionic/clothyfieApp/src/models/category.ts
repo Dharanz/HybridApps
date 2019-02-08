@@ -1,4 +1,5 @@
 export interface Category {
     id?: string;
-    Category?: String;
+    Category?: string;
+    bgImage?: string;
 }

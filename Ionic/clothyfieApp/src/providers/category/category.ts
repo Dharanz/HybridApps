@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -11,8 +12,10 @@ export class CategoryProvider {
   categoryCollection: AngularFirestoreCollection<Category>;
   categories: Observable<Category[]>;
   categoryDoc: AngularFirestoreDocument<Category>;
+
+  bgImage: any;
   
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private sanitizer: DomSanitizer) {
   }
 
   getCategories() {
@@ -26,6 +29,8 @@ export class CategoryProvider {
         return changes.map(a => {
           const data = a.payload.doc.data() as Category;
           data.id = a.payload.doc.id;
+          this.bgImage = this.sanitizer.bypassSecurityTrustStyle(`url(${data.bgImage})`);
+          data.bgImage = this.bgImage;
           return data;
         });
       })

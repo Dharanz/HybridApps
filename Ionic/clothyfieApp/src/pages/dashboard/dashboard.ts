@@ -14,6 +14,8 @@ export class DashboardPage {
   @ViewChild(Slides) slides: Slides;
   productListImages: Category[];
 
+  bgImage:any;     
+
   clothSlideShowImages = [
     { image: "../../assets/imgs/ClothSample/sample1.png" },
     { image: "../../assets/imgs/ClothSample/sample2.png" },
@@ -39,5 +41,9 @@ export class DashboardPage {
 
   openMenu() {
     this.menuCtrl.open();
+  }
+
+  goToProductListing(categoryName: string) {
+    console.log(categoryName);
   }
 }

@@ -9,7 +9,7 @@ page-dashboard {
     }
 
     .card {
-        height: 30%;
+        height: 100%;
     }
 
     .my-card .item.item-image{
@@ -27,19 +27,8 @@ page-dashboard {
       }
 
       .upper-card-header {
-        background-image: url(../../assets/imgs/ClothSample/upper.jpg);
         background-size: cover;
       }
-
-    .lower-card-header {
-        background-image: url(../../assets/imgs/ClothSample/lower.jpg);
-        background-size: cover;
-    }
-
-    .material-card-header {
-        background-image: url(../../assets/imgs/ClothSample/material.jpg);
-        background-size: cover;
-    }
 
     .item-md {
         padding-left: 0px;
@@ -63,7 +52,7 @@ page-dashboard {
             padding-top: 11%;
             font-size: 45pt;
             background: rgba(0, 0, 0, 0.4);
-            color: #000000;
+            color: whitesmoke;
         }
 
 

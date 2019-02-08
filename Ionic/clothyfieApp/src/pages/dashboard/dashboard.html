@@ -7,41 +7,27 @@
     </ion-buttons>
     <ion-title>Home</ion-title>
   </ion-navbar>
-</ion-header>
-
-<ion-content scroll="false">
-  <div class="list card">
-    <div class="item item-image" id="image-container" style="height: 100%;">
-      <ion-slides *ngIf="clothSlideShowImages" autoplay="2000" loop="true" speed="2000">
-        <ion-slide *ngFor="let slide of clothSlideShowImages">
-          <img src="{{slide.image}}" class="imgBackground" />
-        </ion-slide>
-      </ion-slides>
-    </div>
+  <div style="height: 240px;">
+      <div class="list card"> 
+          <div class="item item-image" id="image-container" style="height: 100%;">
+            <ion-slides *ngIf="clothSlideShowImages" autoplay="2000" loop="true" speed="2000">
+              <ion-slide *ngFor="let slide of clothSlideShowImages">
+                <img src="{{slide.image}}" class="imgBackground" />
+              </ion-slide>
+            </ion-slides>
+          </div>
+        </div>
   </div>
+</ion-header>
+<ion-content>  
   <ion-list no-lines>
-    <ion-item>
-      <ion-card>
-        <ion-card-content class="upper-card-header">
-          <div class="titleDiv">Upper</div>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-    <ion-item>
-      <ion-card>
-        <ion-card-content class="lower-card-header">
-          <div class="titleDiv">Lower</div>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-    <ion-item>
-      <ion-card>
-        <ion-card-content class="material-card-header">
-          <div class="titleDiv">Material</div>
+    <ion-item *ngFor="let productListImage of productListImages">
+      <ion-card (click)="goToProductListing(categoryName.innerHTML)">
+        <ion-card-content [style.background-image]="productListImage.bgImage" class="upper-card-header">
+          <div class="titleDiv" #categoryName>{{ productListImage.CategoryName }}</div>
         </ion-card-content>
       </ion-card>
     </ion-item>
   </ion-list>
-
 
 </ion-content>
