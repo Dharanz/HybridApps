@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { CategoryProvider } from './../../providers/category/category';
 import { Category } from './../../models/category';
 import { UILoader } from '../../ui/loader.component';
+import { ProductPage } from './../product/product';
 
 @IonicPage()
 @Component({
@@ -43,7 +44,7 @@ export class DashboardPage {
     this.menuCtrl.open();
   }
 
-  goToProductListing(categoryName: string) {
-    console.log(categoryName);
+  goToProductListing(categoryId: string) {
+    this.navCtrl.push(ProductPage, {id: categoryId});
   }
 }

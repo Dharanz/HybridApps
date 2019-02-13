@@ -26,6 +26,7 @@ import { ProductPage } from '../pages/product/product';
 import { ProductDetailsPage } from '../pages/product-details/product-details';
 import { ProductListingPage } from '../pages/product-listing/product-listing';
 import { CategoryProvider } from '../providers/category/category';
+import { ProductProvider } from '../providers/product/product';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { CategoryProvider } from '../providers/category/category';
     LoginProvider,
     UIToast,
     UILoader,
-    CategoryProvider
+    CategoryProvider,
+    ProductProvider
   ]
 })
 export class AppModule {}

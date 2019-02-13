@@ -22,9 +22,10 @@
 <ion-content>  
   <ion-list no-lines>
     <ion-item *ngFor="let productListImage of productListImages">
-      <ion-card (click)="goToProductListing(categoryName.innerHTML)">
+      <ion-card (click)="goToProductListing(categoryId.innerHTML)">
         <ion-card-content [style.background-image]="productListImage.bgImage" class="upper-card-header">
           <div class="titleDiv" #categoryName>{{ productListImage.CategoryName }}</div>
+          <div #categoryId hidden>{{ productListImage.id }}</div>
         </ion-card-content>
       </ion-card>
     </ion-item>

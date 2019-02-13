@@ -1,6 +1,6 @@
 import { map } from 'rxjs/Operators';
 import { Injectable } from '@angular/core';
-import { Products, ProductColor, ProductSize } from './../../models/products';
+import { Products, ProductColor, ProductSize, ProductCategory } from './../../models/products';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 
