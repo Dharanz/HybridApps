@@ -2,6 +2,10 @@ page-dashboard {
 
     ion-content {
         --overflow: hidden;
+
+        .scroll-content {
+            background-color: #000000;
+        }
     }
 
     .swiper-slide img {
