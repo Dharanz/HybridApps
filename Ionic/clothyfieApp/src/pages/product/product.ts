@@ -1,3 +1,4 @@
+import { ProductDetailsPage } from './../product-details/product-details';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductProvider } from './../../providers/product/product';
@@ -25,8 +26,11 @@ export class ProductPage {
     this.productProvider.getProductsByCategory(this.navParams.get("id"))
     .subscribe((res:Products[]) => {
       this.productDetails = res;
-      console.log(this.productDetails); 
     });
+  }
+
+  goToProductDetails(productId: string) {
+    this.navCtrl.push(ProductDetailsPage, {id: productId});
   }
 
 }

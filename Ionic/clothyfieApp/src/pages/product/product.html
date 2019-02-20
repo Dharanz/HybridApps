@@ -6,9 +6,10 @@
 
 
 <ion-content>
-  <ion-card *ngFor="let productDetail of productDetails">
+  <ion-card *ngFor="let productDetail of productDetails" (click)="goToProductDetails(productId.innerHTML)">
     <img [src]="productDetail.images"/>
     <ion-card-content>
+    <div #productId hidden>{{ productDetail.id }}</div>
       <ion-card-title>
         {{ productDetail.name }}
         <h2>

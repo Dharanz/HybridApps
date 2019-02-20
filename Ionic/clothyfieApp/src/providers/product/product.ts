@@ -14,11 +14,6 @@ export class ProductProvider {
   constructor(private afs: AngularFirestore) {
   }
 
-  getProductsByCategory(categoryId: string) {
-    this.productCollection = this.afs.collection('product', ref => ref.where('CategoryID', '==', categoryId));
-    return this.productData(this.productCollection);
-  }
-
   productData(productCollection) {
     return this.products = this.productCollection.snapshotChanges().pipe(
       map(changes => {
@@ -29,6 +24,15 @@ export class ProductProvider {
         });
       })
     )
+  }
+
+  getProductsByCategory(categoryId: string) {
+    this.productCollection = this.afs.collection('product', ref => ref.where('CategoryID', '==', categoryId));
+    return this.productData(this.productCollection);
+  }
+
+  getProductById(productId: string) {
+    return this.afs.doc(`product/${productId}`).valueChanges();
   }
 
 }
